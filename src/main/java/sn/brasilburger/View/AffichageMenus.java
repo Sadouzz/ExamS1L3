@@ -1,0 +1,47 @@
+package sn.brasilburger.View;
+
+public class AffichageMenus {
+
+    public static void afficherMenuPrincipal() {
+        System.out.println("\n============================");
+        System.out.println("         MENU PRINCIPAL      ");
+        System.out.println("============================");
+        System.out.println("1 - Gestion des Burgers");
+        System.out.println("2 - Gestion des Menus");
+        System.out.println("3 - Gestion des Compléments");
+        System.out.println("4 - Quitter");
+        System.out.println("============================");
+        System.out.print("Votre choix : ");
+    }
+
+    public static void afficherMenuBurger() {
+        System.out.println("\n--- Gestion des Burgers ---");
+        System.out.println("1 - Ajouter un Burger");
+        System.out.println("2 - Modifier un Burger");
+        System.out.println("3 - Archiver un Burger");
+        System.out.println("4 - Liste des Burgers");
+        System.out.println("5 - Retour");
+        System.out.print("Votre choix : ");
+    }
+
+    public static void afficherMenuMenu() {
+        System.out.println("\n--- Gestion des Menus ---");
+        System.out.println("1 - Ajouter un Menu");
+        System.out.println("2 - Modifier un Menu");
+        System.out.println("3 - Archiver un Menu");
+        System.out.println("4 - Liste des Menus");
+        System.out.println("5 - Retour");
+        System.out.print("Votre choix : ");
+    }
+
+    public static void afficherMenuComplement() {
+        System.out.println("\n--- Gestion des Compléments ---");
+        System.out.println("1 - Ajouter un Complément");
+        System.out.println("2 - Modifier un Complément");
+        System.out.println("3 - Archiver un Complément");
+        System.out.println("4 - Liste des Compléments");
+        System.out.println("5 - Retour");
+        System.out.print("Votre choix : ");
+    }
+
+}
