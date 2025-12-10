@@ -12,6 +12,13 @@ public class BurgerCategorieVue extends Vue {
     public BurgerCategorieVue(BurgerCategorieService service) {
         this.service = service;
     }
+    public BurgerCategorie saisieBurgerCategorie(Scanner scanner) {
+        BurgerCategorie bc = new BurgerCategorie();
+        bc.setId(service.numberOfRows() + 1);
+
+        bc.setNom(saisieChaine(scanner, "Nom catégorie : "));
+        return bc;
+    }
 
     public void afficheBurgerCategories() {
         List<BurgerCategorie> liste = service.selectAll();

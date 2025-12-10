@@ -40,7 +40,7 @@ public class Main {
         ComplementVue complementVue = new ComplementVue(complementService);
         MenuVue menuVue = new MenuVue(menuService, menuBurgerService, menuComplementService, burgerVue, complementVue);
 
-        MenuPrincipal menuPrincipal = new MenuPrincipal(burgerVue, menuVue, complementVue, burgerService, complementService, menuService);
+        MenuPrincipal menuPrincipal = new MenuPrincipal(burgerVue, burgerCategorieVue, menuVue, complementVue, burgerCategorieService, burgerService, complementService, menuService);
 
         menuPrincipal.afficher(scanner);
     }
