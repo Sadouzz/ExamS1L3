@@ -36,4 +36,10 @@ public class MenuComplementServiceImpl implements MenuComplementService {
         return menuComplementRepository.numberOfRows();
     }
 
+    @Override
+    public List<MenuComplement> findByMenuId(int menuId) {
+        return menuComplementRepository.findByMenuId(menuId);
+    }
+
+
 }

@@ -13,6 +13,9 @@ public interface MenuComplementService {
     List<MenuComplement> selectAll();
 
     int numberOfRows();
+
+    List<MenuComplement> findByMenuId(int menuId) ;
+
 }
 
 

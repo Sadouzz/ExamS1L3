@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -92,6 +93,32 @@ public class MenuComplementRepositoryImpl implements MenuComplementRepository {
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public List<MenuComplement> findByMenuId(int menuId) {
+        List<MenuComplement> list = new ArrayList<>();
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "SELECT * FROM menu_complement WHERE menu_id = ?"
+            );
+            ps.setInt(1, menuId);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new MenuComplement(
+                        rs.getInt("id"),
+                        rs.getInt("menu_id"),
+                        rs.getInt("complement_id"),
+                        rs.getInt("quantite")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
     private MenuComplement toEntity(ResultSet rs) throws SQLException {
         MenuComplement mc = new MenuComplement();

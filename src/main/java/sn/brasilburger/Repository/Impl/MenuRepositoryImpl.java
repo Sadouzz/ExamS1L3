@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class MenuRepositoryImpl implements MenuRepository {
     private Database database;
@@ -88,6 +91,42 @@ public class MenuRepositoryImpl implements MenuRepository {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    @Override
+    public Optional<Menu> selectById(int id) {
+        Connection conn = database.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = conn.prepareStatement("select * from menus where id = ?");
+            ps.setInt(1, id);
+            return database.<Menu>fetch(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Menu> selectAll() {
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from menus");
+            return database.<Menu>fetchAll(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
+    private Menu toEntity(ResultSet rs) throws SQLException {
+        Menu menu = new Menu();
+        menu.setId(rs.getInt("id"));
+        menu.setLibelle(rs.getString("libelle"));
+        menu.setImageUrl(rs.getString("image_url"));
+        menu.setArchived(rs.getBoolean("is_archived"));
+        menu.setPrix(rs.getDouble("prix"));
+        return menu;
     }
 
 

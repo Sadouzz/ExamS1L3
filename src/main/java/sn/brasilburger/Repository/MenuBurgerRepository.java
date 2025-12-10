@@ -12,6 +12,6 @@ public interface MenuBurgerRepository {
     Optional<MenuBurger> selectById(int id);
 
     List<MenuBurger> selectAll();
-
+    List<MenuBurger> findByMenuId(int menuId);
 
 }

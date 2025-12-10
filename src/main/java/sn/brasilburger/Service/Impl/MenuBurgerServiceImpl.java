@@ -36,4 +36,10 @@ public class MenuBurgerServiceImpl implements MenuBurgerService {
         return menuBurgerRepository.numberOfRows();
     }
 
+    @Override
+    public List<MenuBurger> findByMenuId(int menuId) {
+        return menuBurgerRepository.findByMenuId(menuId);
+    }
+
+
 }

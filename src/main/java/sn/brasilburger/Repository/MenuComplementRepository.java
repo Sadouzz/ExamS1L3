@@ -13,5 +13,5 @@ public interface MenuComplementRepository {
 
     List<MenuComplement> selectAll();
 
-
+    List<MenuComplement> findByMenuId(int menuId) ;
 }

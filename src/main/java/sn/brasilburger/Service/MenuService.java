@@ -13,6 +13,10 @@ public interface MenuService {
 
     void update(Menu menu);
 
+    Optional<Menu> selectById(int id);
+
+    List<Menu> selectAll();
+
 }
 
 

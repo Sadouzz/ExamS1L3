@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -92,6 +93,32 @@ public class MenuBurgerRepositoryImpl implements MenuBurgerRepository {
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public List<MenuBurger> findByMenuId(int menuId) {
+        List<MenuBurger> list = new ArrayList<>();
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "SELECT * FROM menu_burger WHERE menu_id = ?"
+            );
+            ps.setInt(1, menuId);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new MenuBurger(
+                        rs.getInt("id"),
+                        rs.getInt("menu_id"),
+                        rs.getInt("burger_id"),
+                        rs.getInt("quantite")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
     private MenuBurger toEntity(ResultSet rs) throws SQLException {
         MenuBurger mb = new MenuBurger();

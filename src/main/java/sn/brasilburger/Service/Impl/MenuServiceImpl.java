@@ -32,4 +32,14 @@ public class MenuServiceImpl implements MenuService {
         menuRepository.update(menu);
     }
 
+    @Override
+    public Optional<Menu> selectById(int id) {
+        return menuRepository.selectById(id);
+    }
+
+    @Override
+    public List<Menu> selectAll() {
+        return menuRepository.selectAll();
+    }
+
 }

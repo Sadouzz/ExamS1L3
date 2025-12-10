@@ -9,16 +9,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuVue extends Vue {
-    private MenuService menuService;
-    private final MenuBurgerVue menuBurgerVue;
-    private final MenuComplementVue menuComplementVue;
+    private final MenuService menuService;
+    private final MenuBurgerService menuBurgerService;
+    private final MenuComplementService menuComplementService;
+
     private final BurgerVue burgerVue;
     private final ComplementVue complementVue;
 
-    public MenuVue(MenuService menuService, MenuBurgerVue menuBurgerVue, MenuComplementVue menuComplementVue, BurgerVue burgerVue, ComplementVue complementVue) {
+    public MenuVue(MenuService menuService, MenuBurgerService menuBurgerService, MenuComplementService menuComplementService, BurgerVue burgerVue, ComplementVue complementVue) {
         this.menuService = menuService;
-        this.menuBurgerVue = menuBurgerVue;
-        this.menuComplementVue = menuComplementVue;
+        this.menuBurgerService = menuBurgerService;
+        this.menuComplementService = menuComplementService;
         this.burgerVue = burgerVue;
         this.complementVue = complementVue;
     }
@@ -107,6 +108,43 @@ public class MenuVue extends Vue {
         System.out.println("Prix final : " + total + " FCFA");
 
         return menu;
+    }
+
+    public void afficheMenus() {
+        List<Menu> menus = menuService.selectAll();
+
+        if (menus.isEmpty()) {
+            System.out.println("Aucun menu disponible.");
+            return;
+        }
+
+        for (Menu menu : menus) {
+            System.out.println(menu);
+
+            System.out.println("Burgers :");
+            List<MenuBurger> burgers = menuBurgerService.findByMenuId(menu.getId());
+
+            if (burgers.isEmpty()) {
+                System.out.println("   Aucun burger.");
+            } else {
+                for (MenuBurger mb : burgers) {
+                    System.out.println(mb);
+                }
+            }
+
+            System.out.println("Compléments :");
+            List<MenuComplement> complements = menuComplementService.findByMenuId(menu.getId());
+
+            if (complements.isEmpty()) {
+                System.out.println("   Aucun complément.");
+            } else {
+                for (MenuComplement mc : complements) {
+                    System.out.println(mc);
+                }
+            }
+
+            System.out.println("==============================\n");
+        }
     }
 
 }
