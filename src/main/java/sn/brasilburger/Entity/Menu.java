@@ -57,4 +57,15 @@ public class Menu {
     public void setPrix(Double prix) {
         this.prix = prix;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "id=" + id +
+                ", libelle='" + libelle + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", isArchived=" + isArchived +
+                ", prix=" + prix +
+                '}';
+    }
 }

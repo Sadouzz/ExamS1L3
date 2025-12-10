@@ -69,4 +69,16 @@ public class Complement {
     public void setTypeComplement(TypeComplement typeComplement) {
         this.typeComplement = typeComplement;
     }
+
+    @Override
+    public String toString() {
+        return "Complement{" +
+                "id=" + id +
+                ", libelle='" + libelle + '\'' +
+                ", prix=" + prix +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", isArchived=" + isArchived +
+                ", typeComplement=" + typeComplement +
+                '}';
+    }
 }

@@ -47,4 +47,14 @@ public class MenuComplement {
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
+
+    @Override
+    public String toString() {
+        return "MenuComplement{" +
+                "id=" + id +
+                ", menuId=" + menuId +
+                ", complementId=" + complementId +
+                ", quantite=" + quantite +
+                '}';
+    }
 }

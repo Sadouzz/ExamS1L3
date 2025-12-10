@@ -47,4 +47,14 @@ public class MenuBurger {
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
+
+    @Override
+    public String toString() {
+        return "MenuBurger{" +
+                "id=" + id +
+                ", menuId=" + menuId +
+                ", burgerId=" + burgerId +
+                ", quantite=" + quantite +
+                '}';
+    }
 }

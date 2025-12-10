@@ -77,4 +77,17 @@ public class Burger {
     public void setBurgerCategorieId(int burgerCategorieId) {
         this.burgerCategorieId = burgerCategorieId;
     }
+
+    @Override
+    public String toString() {
+        return "Burger{" +
+                "id=" + id +
+                ", libelle='" + libelle + '\'' +
+                ", desc='" + desc + '\'' +
+                ", prix=" + prix +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", isArchived=" + isArchived +
+                ", burgerCategorieId=" + burgerCategorieId +
+                '}';
+    }
 }
