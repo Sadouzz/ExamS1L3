@@ -21,6 +21,16 @@ public class ComplementServiceImpl implements ComplementService {
     }
 
     @Override
+    public Optional<Complement> selectById(int id) {
+        return complementRepository.selectById(id);
+    }
+
+    @Override
+    public List<Complement> selectAll() {
+        return complementRepository.selectAll();
+    }
+
+    @Override
     public int numberOfRows()
     {
         return complementRepository.numberOfRows();

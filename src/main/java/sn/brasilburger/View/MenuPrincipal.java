@@ -74,7 +74,7 @@ public class MenuPrincipal {
                     System.out.println("Complément ajouté !");
                 }
                 case 2 -> {
-
+                    complementVue.afficheComplements();
                 }
                 case 3 -> {  }
                 default -> System.out.println("Choix invalide !");

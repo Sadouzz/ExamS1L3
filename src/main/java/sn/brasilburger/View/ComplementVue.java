@@ -30,4 +30,13 @@ public class ComplementVue extends Vue {
 
         return c;
     }
+
+    public void afficheComplements() {
+        List<Complement> liste = service.selectAll();
+        if (liste.isEmpty()) {
+            System.out.println("Aucun complément.");
+        } else {
+            liste.forEach(System.out::println);
+        }
+    }
 }

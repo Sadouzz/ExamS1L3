@@ -70,6 +70,42 @@ public class ComplementRepositoryImpl implements ComplementRepository {
         }
     }
 
+    @Override
+    public Optional<Complement> selectById(int id) {
+        Connection conn = database.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = conn.prepareStatement("select * from complements where id = ?");
+            ps.setInt(1, id);
+            return database.<Complement>fetch(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 
+
+    @Override
+    public List<Complement> selectAll() {
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from complements");
+            return database.<Complement>fetchAll(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
+    private Complement toEntity(ResultSet rs) throws SQLException {
+        Complement c = new Complement();
+        c.setId(rs.getInt("id"));
+        c.setLibelle(rs.getString("libelle"));
+        c.setPrix(rs.getDouble("prix"));
+        c.setImageUrl(rs.getString("image_url"));
+        c.setArchived(rs.getBoolean("is_archived"));
+        c.setTypeComplement(TypeComplement.valueOf(rs.getString("type_complement")));
+        return c;
+    }
 
 }
