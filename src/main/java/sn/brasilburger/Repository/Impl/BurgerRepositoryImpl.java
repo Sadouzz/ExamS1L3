@@ -27,7 +27,7 @@ public class BurgerRepositoryImpl implements BurgerRepository {
                 throw new SQLException("Erreur de connexion à la BD");
             }
             Connection conn = database.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM quartiers");
+            PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM burgers");
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -75,7 +75,7 @@ public class BurgerRepositoryImpl implements BurgerRepository {
         Connection conn = database.getConnection();
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("select * from quartiers where id = ?");
+            ps = conn.prepareStatement("select * from burgers where id = ?");
             ps.setInt(1, id);
             return database.<Burger>fetch(ps, this::toEntity);
         } catch (SQLException e) {
@@ -88,7 +88,7 @@ public class BurgerRepositoryImpl implements BurgerRepository {
     public List<Burger> selectAll() {
         try {
             Connection conn = database.getConnection();
-            PreparedStatement ps = conn.prepareStatement("select * from quartiers");
+            PreparedStatement ps = conn.prepareStatement("select * from burgers");
             return database.<Burger>fetchAll(ps, this::toEntity);
         } catch (SQLException e) {
             e.printStackTrace();
