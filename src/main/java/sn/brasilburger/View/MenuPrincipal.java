@@ -13,14 +13,18 @@ public class MenuPrincipal {
 
     private final BurgerVue burgerVue;
     private final ComplementVue complementVue;
+    private final MenuBurgerVue menuBurgerVue;
+    private final MenuComplementVue menuComplementVue;
 
     private final BurgerService burgerService;
     private final ComplementService complementService;
 
-    public MenuPrincipal(BurgerVue burgerVue, ComplementVue complementVue,
+    public MenuPrincipal(BurgerVue burgerVue, ComplementVue complementVue, MenuBurgerVue menuBurgerVue, MenuComplementVue menuComplementVue,
                          BurgerService burgerService, ComplementService complementService) {
         this.burgerVue = burgerVue;
         this.complementVue = complementVue;
+        this.menuComplementVue = menuComplementVue;
+        this.menuBurgerVue = menuBurgerVue;
         this.burgerService = burgerService;
         this.complementService = complementService;
     }
