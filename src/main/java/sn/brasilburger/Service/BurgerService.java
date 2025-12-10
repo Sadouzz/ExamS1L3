@@ -9,6 +9,9 @@ public interface BurgerService {
     void createBurger(Burger burger);
 
     int numberOfRows();
+    Optional<Burger> selectById(int id);
+
+    List<Burger> selectAll();
 }
 
 

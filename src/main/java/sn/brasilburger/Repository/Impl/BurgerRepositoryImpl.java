@@ -70,6 +70,32 @@ public class BurgerRepositoryImpl implements BurgerRepository {
         }
     }
 
+    @Override
+    public Optional<Burger> selectById(int id) {
+        Connection conn = database.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = conn.prepareStatement("select * from quartiers where id = ?");
+            ps.setInt(1, id);
+            return database.<Burger>fetch(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Burger> selectAll() {
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from quartiers");
+            return database.<Burger>fetchAll(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
     private Burger toEntity(ResultSet rs) throws SQLException {
         Burger burger = new Burger();
         burger.setId(rs.getInt("id"));

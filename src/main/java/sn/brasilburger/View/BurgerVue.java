@@ -9,12 +9,13 @@ import java.util.Scanner;
 
 public class BurgerVue extends Vue {
     private BurgerService burgerService;
-    private BurgerCategorieService burgerCategorieservice;
+    private BurgerCategorieService burgerCategorieService;
     private BurgerCategorieVue burgerCategorieVue;
 
-    public BurgerVue(BurgerService burgerService, BurgerCategorieVue burgerCategorieVue) {
+    public BurgerVue(BurgerService burgerService, BurgerCategorieService burgerCategorieService, BurgerCategorieVue burgerCategorieVue) {
 
         this.burgerService = burgerService;
+        this.burgerCategorieService = burgerCategorieService;
         this.burgerCategorieVue = burgerCategorieVue;
     }
 
@@ -31,8 +32,17 @@ public class BurgerVue extends Vue {
         do {
             burgerCategorieVue.afficheBurgerCategories();
             b.setBurgerCategorieId(Integer.parseInt(saisieChaine(scanner, "ID Catégorie : ")));
-        }while (burgerCategorieservice.selectById(b.getBurgerCategorieId()).isEmpty());
+        }while (burgerCategorieService.selectById(b.getBurgerCategorieId()).isEmpty());
 
         return b;
+    }
+
+    public void afficheBurgers() {
+        List<Burger> liste = burgerService.selectAll();
+        if (liste.isEmpty()) {
+            System.out.println("Aucun burger.");
+        } else {
+            liste.forEach(System.out::println);
+        }
     }
 }
