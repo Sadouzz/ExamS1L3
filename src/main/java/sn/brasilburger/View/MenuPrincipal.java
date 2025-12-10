@@ -4,19 +4,25 @@ import sn.brasilburger.Entity.Burger;
 import sn.brasilburger.Entity.Complement;
 import sn.brasilburger.Entity.Menu;
 import sn.brasilburger.Service.BurgerService;
+import sn.brasilburger.Service.ComplementService;
+import sn.brasilburger.Service.Impl.ComplementServiceImpl;
 
 import java.util.Scanner;
 
 public class MenuPrincipal {
 
     private final BurgerVue burgerVue;
+    private final ComplementVue complementVue;
 
     private final BurgerService burgerService;
+    private final ComplementService complementService;
 
-    public MenuPrincipal(BurgerVue burgerVue,
-                         BurgerService burgerService) {
+    public MenuPrincipal(BurgerVue burgerVue, ComplementVue complementVue,
+                         BurgerService burgerService, ComplementService complementService) {
         this.burgerVue = burgerVue;
+        this.complementVue = complementVue;
         this.burgerService = burgerService;
+        this.complementService = complementService;
     }
 
     public void afficher(Scanner scanner) {
@@ -29,7 +35,7 @@ public class MenuPrincipal {
             switch (choix) {
                 case 1 -> afficherMenuBurger(scanner);
                 case 2 : //afficherMenuMenu(scanner);
-                case 3 : //afficherMenuComplement(scanner);
+                case 3 : afficherMenuComplement(scanner);
                 case 4 : System.out.println("Au revoir !");
                 default -> System.out.println("Choix invalide, réessayez.");
             }
@@ -49,6 +55,27 @@ public class MenuPrincipal {
                     System.out.println("Burger ajouté !");
                 }
                 case 2 -> burgerVue.afficheBurgers();
+                case 3 -> {  }
+                default -> System.out.println("Choix invalide !");
+            }
+        } while (choix != 3);
+    }
+
+    private void afficherMenuComplement(Scanner scanner) {
+        int choix = -1;
+        do {
+            AffichageMenus.afficherMenuComplement();
+            choix = lireEntier(scanner);
+
+            switch (choix) {
+                case 1 -> {
+                    Complement complement = complementVue.saisieComplement(scanner);
+                    complementService.createComplement(complement);
+                    System.out.println("Complément ajouté !");
+                }
+                case 2 -> {
+
+                }
                 case 3 -> {  }
                 default -> System.out.println("Choix invalide !");
             }

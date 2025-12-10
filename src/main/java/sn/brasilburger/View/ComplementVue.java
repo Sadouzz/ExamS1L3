@@ -1,0 +1,33 @@
+package sn.brasilburger.View;
+
+import sn.brasilburger.Entity.Complement;
+import sn.brasilburger.Entity.Enum.TypeComplement;
+import sn.brasilburger.Service.ComplementService;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class ComplementVue extends Vue {
+    private ComplementService service;
+
+    public ComplementVue(ComplementService service) {
+        this.service = service;
+    }
+
+    public Complement saisieComplement(Scanner scanner) {
+        Complement c = new Complement();
+        c.setId(service.numberOfRows() + 1);
+
+        c.setLibelle(saisieChaine(scanner, "Libellé : "));
+        c.setPrix(Double.parseDouble(saisieChaine(scanner, "Prix : ")));
+        c.setImageUrl(saisieChaine(scanner, "URL image : "));
+        c.setArchived(false);
+
+        System.out.println("Type de complément (BOISSON / FRITES)");
+        c.setTypeComplement(TypeComplement.valueOf(
+                saisieChaine(scanner, "Type : ").toUpperCase()
+        ));
+
+        return c;
+    }
+}
