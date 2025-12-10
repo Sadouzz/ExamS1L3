@@ -50,7 +50,7 @@ public class BurgerCategorieRepositoryImpl implements BurgerCategorieRepository 
             }
             Connection conn = database.getConnection();
             PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO burger_categories (id, nom) VALUES (?, ?)"
+                    "INSERT INTO burger_categorie (id, nom) VALUES (?, ?)"
             );
 
             ps.setInt(1, bc.getId());

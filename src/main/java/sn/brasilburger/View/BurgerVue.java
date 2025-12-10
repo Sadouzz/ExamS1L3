@@ -1,6 +1,7 @@
 package sn.brasilburger.View;
 
 import sn.brasilburger.Entity.Burger;
+import sn.brasilburger.Entity.BurgerCategorie;
 import sn.brasilburger.Service.BurgerCategorieService;
 import sn.brasilburger.Service.BurgerService;
 
@@ -30,8 +31,20 @@ public class BurgerVue extends Vue {
         b.setArchived(false);
 
         do {
+            System.out.println("============================");
             burgerCategorieVue.afficheBurgerCategories();
-            b.setBurgerCategorieId(Integer.parseInt(saisieChaine(scanner, "ID Catégorie : ")));
+            if(!burgerCategorieService.selectAll().isEmpty())
+            {
+                System.out.println("Choix de l'ID de la catégorie de votre burger");
+                b.setBurgerCategorieId(Integer.parseInt(saisieChaine(scanner, "ID Catégorie : ")));
+            }
+            else {
+                System.out.println("Liste de catégories de burger vide");
+                System.out.println("Veuillez créer une catégorie de burger!");
+                BurgerCategorie burgerCategorie = burgerCategorieVue.saisieBurgerCategorie(scanner);
+                burgerCategorieService.createBurgerCategorie(burgerCategorie);
+                b.setBurgerCategorieId(burgerCategorie.getId());
+            }
         }while (burgerCategorieService.selectById(b.getBurgerCategorieId()).isEmpty());
 
         return b;
