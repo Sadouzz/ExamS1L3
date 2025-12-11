@@ -46,11 +46,11 @@ public class MenuPrincipal {
             choix = lireEntier(scanner);
 
             switch (choix) {
-                case 1 : afficherMenuBurger(scanner);
-                case 2 : afficherMenuMenu(scanner);
-                case 3 : afficherMenuComplement(scanner);
-                case 4 : System.out.println("Au revoir !");
-                default : System.out.println("Choix invalide, réessayez.");
+                case 1 -> afficherMenuBurger(scanner);
+                case 2 -> afficherMenuMenu(scanner);
+                case 3 -> afficherMenuComplement(scanner);
+                case 4 -> System.out.println("Au revoir !");
+                default -> System.out.println("Choix invalide, réessayez.");
             }
         } while (choix != 4);
     }

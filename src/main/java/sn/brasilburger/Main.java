@@ -25,6 +25,7 @@ public class Main {
         );
         Scanner scanner = new Scanner(System.in);
 
+        CloudinaryService cloudinaryService = (CloudinaryService) ServiceFactory.getInstance((EntityName.Cloudinary));
         BurgerCategorieService burgerCategorieService = (BurgerCategorieService) ServiceFactory.getInstance((EntityName.BurgerCategorie));
         BurgerService burgerService = (BurgerService) ServiceFactory.getInstance((EntityName.Burger));
         MenuService menuService = (MenuService) ServiceFactory.getInstance((EntityName.Menu));
@@ -33,9 +34,9 @@ public class Main {
         ComplementService complementService = (ComplementService) ServiceFactory.getInstance((EntityName.Complement));
 
         BurgerCategorieVue burgerCategorieVue = new BurgerCategorieVue(burgerCategorieService);
-        BurgerVue burgerVue = new BurgerVue(burgerService, burgerCategorieService, burgerCategorieVue);
-        ComplementVue complementVue = new ComplementVue(complementService);
-        MenuVue menuVue = new MenuVue(menuService, burgerService, complementService, menuBurgerService, menuComplementService, burgerVue, complementVue);
+        BurgerVue burgerVue = new BurgerVue(burgerService, burgerCategorieService, cloudinaryService, burgerCategorieVue);
+        ComplementVue complementVue = new ComplementVue(complementService, cloudinaryService);
+        MenuVue menuVue = new MenuVue(menuService, burgerService, complementService, menuBurgerService, menuComplementService, burgerVue, complementVue, cloudinaryService);
 
         MenuPrincipal menuPrincipal = new MenuPrincipal(burgerVue, burgerCategorieVue, menuVue, complementVue, burgerCategorieService, burgerService, complementService, menuService, menuBurgerService, menuComplementService);
 

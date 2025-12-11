@@ -14,11 +14,12 @@ public class MenuVue extends Vue {
     private final ComplementService complementService;
     private final MenuBurgerService menuBurgerService;
     private final MenuComplementService menuComplementService;
+    private final CloudinaryService cloudinaryService;
 
     private final BurgerVue burgerVue;
     private final ComplementVue complementVue;
 
-    public MenuVue(MenuService menuService, BurgerService burgerService, ComplementService complementService, MenuBurgerService menuBurgerService, MenuComplementService menuComplementService, BurgerVue burgerVue, ComplementVue complementVue) {
+    public MenuVue(MenuService menuService, BurgerService burgerService, ComplementService complementService, MenuBurgerService menuBurgerService, MenuComplementService menuComplementService, BurgerVue burgerVue, ComplementVue complementVue, CloudinaryService cloudinaryService) {
         this.menuService = menuService;
         this.burgerService = burgerService;
         this.complementService = complementService;
@@ -26,6 +27,7 @@ public class MenuVue extends Vue {
         this.menuComplementService = menuComplementService;
         this.burgerVue = burgerVue;
         this.complementVue = complementVue;
+        this.cloudinaryService = cloudinaryService;
     }
 
     public Menu saisieMenu(Scanner scanner) {
@@ -33,7 +35,14 @@ public class MenuVue extends Vue {
         menu.setId(menuService.numberOfRows() + 1);
 
         menu.setLibelle(saisieChaine(scanner, "Saisir le libellé : "));
-        menu.setImageUrl(saisieChaine(scanner, "Saisir l'URL de l'image : "));
+
+        String imageUrl = cloudinaryService.uploadImage();
+
+        if (imageUrl != null) {
+            System.out.println("Image disponible à : " + imageUrl);
+        }
+        menu.setImageUrl(imageUrl);
+
         menu.setArchived(false);
         menu.setPrix(0.0);
 

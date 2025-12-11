@@ -2,6 +2,7 @@ package sn.brasilburger.View;
 
 import sn.brasilburger.Entity.Complement;
 import sn.brasilburger.Entity.Enum.TypeComplement;
+import sn.brasilburger.Service.CloudinaryService;
 import sn.brasilburger.Service.ComplementService;
 
 import java.util.List;
@@ -9,9 +10,11 @@ import java.util.Scanner;
 
 public class ComplementVue extends Vue {
     private ComplementService service;
+    private final CloudinaryService cloudinaryService;
 
-    public ComplementVue(ComplementService service) {
+    public ComplementVue(ComplementService service, CloudinaryService cloudinaryService) {
         this.service = service;
+        this.cloudinaryService = cloudinaryService;
     }
 
     public Complement saisieComplement(Scanner scanner) {
@@ -20,7 +23,14 @@ public class ComplementVue extends Vue {
 
         c.setLibelle(saisieChaine(scanner, "Libellé : "));
         c.setPrix(Double.parseDouble(saisieChaine(scanner, "Prix : ")));
-        c.setImageUrl(saisieChaine(scanner, "URL image : "));
+
+        String imageUrl = cloudinaryService.uploadImage();
+
+        if (imageUrl != null) {
+            System.out.println("Image disponible à : " + imageUrl);
+        }
+        c.setImageUrl(imageUrl);
+
         c.setArchived(false);
 
         System.out.println("Type de complément (BOISSON / FRITES)");

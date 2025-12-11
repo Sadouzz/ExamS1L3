@@ -1,6 +1,7 @@
 package sn.brasilburger.config.factory.service;
 
 import sn.brasilburger.Repository.*;
+import sn.brasilburger.Service.CloudinaryService;
 import sn.brasilburger.Service.Impl.*;
 import sn.brasilburger.config.factory.repository.EntityName;
 import sn.brasilburger.config.factory.repository.RepositoryFactory;
@@ -21,6 +22,8 @@ public final class ServiceFactory {
                 return new MenuBurgerServiceImpl((MenuBurgerRepository) RepositoryFactory.getInstance(EntityName.MenuBurger));
             case MenuComplement:
                 return new MenuComplementServiceImpl((MenuComplementRepository) RepositoryFactory.getInstance(EntityName.MenuComplement));
+            case Cloudinary:
+                return new CloudinaryService();
             default:
                 return null;
         }
