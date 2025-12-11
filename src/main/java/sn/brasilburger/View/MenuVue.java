@@ -10,14 +10,18 @@ import java.util.Scanner;
 
 public class MenuVue extends Vue {
     private final MenuService menuService;
+    private final BurgerService burgerService;
+    private final ComplementService complementService;
     private final MenuBurgerService menuBurgerService;
     private final MenuComplementService menuComplementService;
 
     private final BurgerVue burgerVue;
     private final ComplementVue complementVue;
 
-    public MenuVue(MenuService menuService, MenuBurgerService menuBurgerService, MenuComplementService menuComplementService, BurgerVue burgerVue, ComplementVue complementVue) {
+    public MenuVue(MenuService menuService, BurgerService burgerService, ComplementService complementService, MenuBurgerService menuBurgerService, MenuComplementService menuComplementService, BurgerVue burgerVue, ComplementVue complementVue) {
         this.menuService = menuService;
+        this.burgerService = burgerService;
+        this.complementService = complementService;
         this.menuBurgerService = menuBurgerService;
         this.menuComplementService = menuComplementService;
         this.burgerVue = burgerVue;
@@ -31,6 +35,7 @@ public class MenuVue extends Vue {
         menu.setLibelle(saisieChaine(scanner, "Saisir le libellé : "));
         menu.setImageUrl(saisieChaine(scanner, "Saisir l'URL de l'image : "));
         menu.setArchived(false);
+        menu.setPrix(0.0);
 
         return menu;
     }
@@ -122,24 +127,24 @@ public class MenuVue extends Vue {
             System.out.println(menu);
 
             System.out.println("Burgers :");
-            List<MenuBurger> burgers = menuBurgerService.findByMenuId(menu.getId());
+            List<MenuBurger> menuBurgers = menuBurgerService.findByMenuId(menu.getId());
 
-            if (burgers.isEmpty()) {
+            if (menuBurgers.isEmpty()) {
                 System.out.println("   Aucun burger.");
             } else {
-                for (MenuBurger mb : burgers) {
-                    System.out.println(mb);
+                for (MenuBurger mb : menuBurgers) {
+                    System.out.println(burgerService.selectById(mb.getBurgerId()).get());
                 }
             }
 
             System.out.println("Compléments :");
-            List<MenuComplement> complements = menuComplementService.findByMenuId(menu.getId());
+            List<MenuComplement> menuComplements = menuComplementService.findByMenuId(menu.getId());
 
-            if (complements.isEmpty()) {
+            if (menuComplements.isEmpty()) {
                 System.out.println("   Aucun complément.");
             } else {
-                for (MenuComplement mc : complements) {
-                    System.out.println(mc);
+                for (MenuComplement mc : menuComplements) {
+                    System.out.println(complementService.selectById(mc.getComplementId()).get());
                 }
             }
 

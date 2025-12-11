@@ -16,11 +16,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //?user=neondb_owner&password=npg_3XJcjmSFD4Vr&sslmode=require&channelBinding=require
         Database database = DatabaseImpl.getInstance(
                 "org.postgresql.Driver",
-                "jdbc:postgresql://localhost:5432/brasilburger",
-                "postgres",
-                "passer"
+                "jdbc:postgresql://ep-billowing-unit-adx3mpgt-pooler.c-2.us-east-1.aws.neon.tech/brasilburger",
+                "neondb_owner",
+                "npg_3XJcjmSFD4Vr"
         );
         Scanner scanner = new Scanner(System.in);
 
@@ -34,9 +35,9 @@ public class Main {
         BurgerCategorieVue burgerCategorieVue = new BurgerCategorieVue(burgerCategorieService);
         BurgerVue burgerVue = new BurgerVue(burgerService, burgerCategorieService, burgerCategorieVue);
         ComplementVue complementVue = new ComplementVue(complementService);
-        MenuVue menuVue = new MenuVue(menuService, menuBurgerService, menuComplementService, burgerVue, complementVue);
+        MenuVue menuVue = new MenuVue(menuService, burgerService, complementService, menuBurgerService, menuComplementService, burgerVue, complementVue);
 
-        MenuPrincipal menuPrincipal = new MenuPrincipal(burgerVue, burgerCategorieVue, menuVue, complementVue, burgerCategorieService, burgerService, complementService, menuService);
+        MenuPrincipal menuPrincipal = new MenuPrincipal(burgerVue, burgerCategorieVue, menuVue, complementVue, burgerCategorieService, burgerService, complementService, menuService, menuBurgerService, menuComplementService);
 
         menuPrincipal.afficher(scanner);
     }

@@ -4,11 +4,8 @@ import sn.brasilburger.Entity.Burger;
 import sn.brasilburger.Entity.BurgerCategorie;
 import sn.brasilburger.Entity.Complement;
 import sn.brasilburger.Entity.Menu;
-import sn.brasilburger.Service.BurgerCategorieService;
-import sn.brasilburger.Service.BurgerService;
-import sn.brasilburger.Service.ComplementService;
+import sn.brasilburger.Service.*;
 import sn.brasilburger.Service.Impl.ComplementServiceImpl;
-import sn.brasilburger.Service.MenuService;
 
 import java.util.Scanner;
 
@@ -24,9 +21,11 @@ public class MenuPrincipal {
     private final BurgerService burgerService;
     private final ComplementService complementService;
     private final MenuService menuService;
+    private final MenuBurgerService menuBurgerService;
+    private final MenuComplementService menuComplementService;
 
     public MenuPrincipal(BurgerVue burgerVue, BurgerCategorieVue burgerCategorieVue, MenuVue menuVue, ComplementVue complementVue, BurgerCategorieService burgerCategorieService,
-                         BurgerService burgerService, ComplementService complementService, MenuService menuService) {
+                         BurgerService burgerService, ComplementService complementService, MenuService menuService, MenuBurgerService menuBurgerService, MenuComplementService menuComplementService) {
         this.burgerVue = burgerVue;
         this.burgerCategorieVue = burgerCategorieVue;
         this.menuVue = menuVue;
@@ -35,6 +34,8 @@ public class MenuPrincipal {
         this.burgerService = burgerService;
         this.complementService = complementService;
         this.menuService = menuService;
+        this.menuBurgerService = menuBurgerService;
+        this.menuComplementService = menuComplementService;
     }
 
     public void afficher(Scanner scanner) {
@@ -77,7 +78,7 @@ public class MenuPrincipal {
                 case 6 -> {  }
                 default -> System.out.println("Choix invalide !");
             }
-        } while (choix != 3);
+        } while (choix != 6);
     }
 
     private void afficherMenuMenu(Scanner scanner) {
@@ -88,8 +89,8 @@ public class MenuPrincipal {
 
             switch (choix) {
                 case 1 -> {
-                    Menu menu = menuVue.saisieMenu(scanner);
-                    menuService.createMenu(menu);
+                    Menu menu = menuVue.saisieMenuComplet(scanner, burgerService, complementService, menuBurgerService, menuComplementService);
+                    menuService.update(menu);
                     System.out.println("Menu ajouté !");
                 }
                 case 2 -> {}
@@ -98,7 +99,7 @@ public class MenuPrincipal {
                 case 5 -> {  }
                 default -> System.out.println("Choix invalide !");
             }
-        } while (choix != 3);
+        } while (choix != 5);
     }
 
     private void afficherMenuComplement(Scanner scanner) {
@@ -121,7 +122,7 @@ public class MenuPrincipal {
                 case 5 -> {  }
                 default -> System.out.println("Choix invalide !");
             }
-        } while (choix != 3);
+        } while (choix != 5);
     }
 
     private int lireEntier(Scanner scanner) {
