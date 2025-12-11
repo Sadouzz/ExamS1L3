@@ -8,6 +8,9 @@ import sn.brasilburger.Service.Impl.*;
 import sn.brasilburger.View.*;
 import sn.brasilburger.config.database.Database;
 import sn.brasilburger.config.database.DatabaseImpl;
+import sn.brasilburger.config.factory.repository.EntityName;
+import sn.brasilburger.config.factory.repository.RepositoryFactory;
+import sn.brasilburger.config.factory.service.ServiceFactory;
 
 import java.util.Scanner;
 
@@ -21,19 +24,12 @@ public class Main {
         );
         Scanner scanner = new Scanner(System.in);
 
-        BurgerCategorieRepository burgerCategorieRepository = new BurgerCategorieRepositoryImpl(database);
-        BurgerRepository burgerRepository = new BurgerRepositoryImpl(database);
-        MenuRepository menuRepository = new MenuRepositoryImpl(database);
-        MenuComplementRepository menuComplementRepository = new MenuComplementRepositoryImpl(database);
-        MenuBurgerRepository menuBurgerRepository = new MenuBurgerRepositoryImpl(database);
-        ComplementRepository complementRepository = new ComplementRepositoryImpl(database);
-
-        BurgerCategorieService burgerCategorieService = new BurgerCategorieServiceImpl(burgerCategorieRepository);
-        BurgerService burgerService = new BurgerServiceImpl(burgerRepository);
-        MenuService menuService = new MenuServiceImpl(menuRepository);
-        MenuBurgerService menuBurgerService = new MenuBurgerServiceImpl(menuBurgerRepository);
-        MenuComplementService menuComplementService = new MenuComplementServiceImpl(menuComplementRepository);
-        ComplementService complementService = new ComplementServiceImpl(complementRepository);
+        BurgerCategorieService burgerCategorieService = (BurgerCategorieService) ServiceFactory.getInstance((EntityName.BurgerCategorie));
+        BurgerService burgerService = (BurgerService) ServiceFactory.getInstance((EntityName.Burger));
+        MenuService menuService = (MenuService) ServiceFactory.getInstance((EntityName.Menu));
+        MenuComplementService menuComplementService = (MenuComplementService) ServiceFactory.getInstance((EntityName.MenuComplement));
+        MenuBurgerService menuBurgerService = (MenuBurgerService) ServiceFactory.getInstance((EntityName.MenuBurger));
+        ComplementService complementService = (ComplementService) ServiceFactory.getInstance((EntityName.Complement));
 
         BurgerCategorieVue burgerCategorieVue = new BurgerCategorieVue(burgerCategorieService);
         BurgerVue burgerVue = new BurgerVue(burgerService, burgerCategorieService, burgerCategorieVue);
