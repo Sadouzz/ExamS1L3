@@ -113,7 +113,32 @@ public class ComplementRepositoryImpl implements ComplementRepository {
         return Collections.emptyList();
     }
 
+    @Override
+    public int update(Complement complement) {
+        try {
+            if (!database.isConnected()) {
+                throw new SQLException("Erreur de connexion à la BD");
+            }
 
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "UPDATE complements SET libelle = ?, prix = ?, image_url = ?, is_archived = ?, type_complement = ?::type_complement WHERE id = ?"
+            );
+
+            ps.setString(1, complement.getLibelle());
+            ps.setDouble(2, complement.getPrix());
+            ps.setString(3, complement.getImageUrl());
+            ps.setBoolean(4, complement.getArchived());
+            ps.setString(5, complement.getTypeComplement().name());
+            ps.setInt(6, complement.getId());
+
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
     private Complement toEntity(ResultSet rs) throws SQLException {
         Complement c = new Complement();

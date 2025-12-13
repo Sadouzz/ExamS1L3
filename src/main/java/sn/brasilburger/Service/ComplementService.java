@@ -13,6 +13,7 @@ public interface ComplementService {
 
     List<Complement> selectAll();
     List<Complement> selectByType(TypeComplement typeComplement);
+    int update(Complement complement);
 
     int numberOfRows();
 }

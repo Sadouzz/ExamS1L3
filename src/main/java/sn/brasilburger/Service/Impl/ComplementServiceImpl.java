@@ -37,6 +37,11 @@ public class ComplementServiceImpl implements ComplementService {
     }
 
     @Override
+    public int update(Complement complement){
+        return complementRepository.update(complement);
+    }
+
+    @Override
     public int numberOfRows()
     {
         return complementRepository.numberOfRows();

@@ -46,6 +46,86 @@ public class ComplementVue extends Vue {
         return c;
     }
 
+    public Complement modifierComplement(Scanner scanner) {
+        if (service.selectAll().isEmpty()) {
+            System.out.println("Aucun complément à modifier !");
+            return null;
+        }
+        afficheComplements();
+
+        int complementId;
+        do {
+            complementId = Integer.parseInt(saisieChaine(scanner, "ID du complément à modifier : "));
+        } while (service.selectById(complementId).isEmpty());
+
+        Complement complement = service.selectById(complementId).get();
+
+        System.out.println("Modification du complément : " + complement.getLibelle());
+
+        String libelle = saisieChaine(scanner, "Nouveau libellé (" + complement.getLibelle() + ") : ");
+        if (!libelle.isEmpty()) complement.setLibelle(libelle);
+
+        String prixStr = saisieChaine(scanner, "Nouveau prix (" + complement.getPrix() + ") : ");
+        if (!prixStr.isEmpty()) complement.setPrix(Double.parseDouble(prixStr));
+
+        String imageUrl = cloudinaryService.uploadImage();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            System.out.println("Nouvelle image disponible à : " + imageUrl);
+            complement.setImageUrl(imageUrl);
+        }
+
+        int typeComp;
+        do {
+            System.out.println("Type de complément:");
+            System.out.println("1 - Boisson");
+            System.out.println("2 - Frite");
+            typeComp = Integer.parseInt(saisieChaine(scanner, "ID du complément : "));
+        }while (typeComp != 1 && typeComp != 2);
+
+        complement.setTypeComplement(TypeComplement.getOptionByValue(typeComp));
+
+        int updated = service.update(complement);
+        if (updated > 0) {
+            System.out.println("Complément mis à jour avec succès !");
+        } else {
+            System.out.println("Erreur lors de la mise à jour du complément.");
+        }
+
+        return complement;
+    }
+
+    public void archiverComplement(Scanner scanner) {
+        if (service.selectAll().isEmpty()) {
+            System.out.println("Aucun complément à archiver !");
+            return;
+        }
+        afficheComplements();
+
+        int complementId;
+        do {
+            complementId = Integer.parseInt(saisieChaine(scanner, "ID du complément à archiver/désarchiver : "));
+        } while (service.selectById(complementId).isEmpty());
+
+        Complement complement = service.selectById(complementId).get();
+
+        System.out.println("Complément sélectionné : " + complement.getLibelle());
+        System.out.println("État actuel : " + (complement.getArchived() ? "Archivé" : "Actif"));
+
+        String rep = saisieChaine(scanner, "Voulez-vous changer son état ? (o/n) : ");
+        if (rep.equalsIgnoreCase("o")) {
+            complement.setArchived(!complement.getArchived());
+            int updated = service.update(complement);
+            if (updated > 0) {
+                System.out.println("État du complément modifié : " + (complement.getArchived() ? "Archivé" : "Actif"));
+            } else {
+                System.out.println("Erreur lors de la modification de l'état du complément.");
+            }
+        } else {
+            System.out.println("Aucune modification effectuée.");
+        }
+    }
+
+
     public void afficheComplements() {
         List<Complement> liste = service.selectAll();
         if (liste.isEmpty()) {

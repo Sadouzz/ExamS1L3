@@ -13,6 +13,7 @@ public interface ComplementRepository {
     Optional<Complement> selectById(int id);
 
     List<Complement> selectAll();
+    int update(Complement complement);
 
     List<Complement> selectByType(TypeComplement typeComplement);
 
