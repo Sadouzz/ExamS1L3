@@ -75,7 +75,9 @@ public class MenuPrincipal {
                 case 3 -> {
                     burgerVue.modifierBurger(scanner);
                 }
-                case 4 -> {  }
+                case 4 -> {
+                    burgerVue.archiverBurger(scanner);
+                }
                 case 5 -> burgerVue.afficheBurgers();
                 case 6 -> {  }
                 default -> System.out.println("Choix invalide !");

@@ -107,6 +107,38 @@ public class BurgerVue extends Vue {
         return burger;
     }
 
+    public void archiverBurger(Scanner scanner) {
+        if (burgerService.selectAll().isEmpty()) {
+            System.out.println("Aucun burger à archiver !");
+            return;
+        }
+        afficheBurgers();
+
+        int burgerId;
+        do {
+            burgerId = Integer.parseInt(saisieChaine(scanner, "ID du burger à archiver/désarchiver : "));
+        } while (burgerService.selectById(burgerId).isEmpty());
+
+        Burger burger = burgerService.selectById(burgerId).get();
+
+        System.out.println("Burger sélectionné : " + burger.getLibelle());
+        System.out.println("État actuel : " + (burger.getArchived() ? "Archivé" : "Actif"));
+
+        String rep = saisieChaine(scanner, "Voulez-vous changer son état ? (o/n) : ");
+        if (rep.equalsIgnoreCase("o")) {
+            burger.setArchived(!burger.getArchived());
+            int updated = burgerService.update(burger);
+            if (updated > 0) {
+                System.out.println("État du burger modifié : " + (burger.getArchived() ? "Archivé" : "Actif"));
+            } else {
+                System.out.println("Erreur lors de la modification de l'état du burger.");
+            }
+        } else {
+            System.out.println("Aucune modification effectuée.");
+        }
+    }
+
+
 
     public void afficheBurgers() {
         List<Burger> liste = burgerService.selectAll();
