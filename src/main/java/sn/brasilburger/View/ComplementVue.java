@@ -33,10 +33,15 @@ public class ComplementVue extends Vue {
 
         c.setArchived(false);
 
-        System.out.println("Type de complément (BOISSON / FRITES)");
-        c.setTypeComplement(TypeComplement.valueOf(
-                saisieChaine(scanner, "Type : ").toUpperCase()
-        ));
+        int typeComp;
+        do {
+            System.out.println("Type de complément:");
+            System.out.println("1 - Boisson");
+            System.out.println("2 - Frite");
+            typeComp = Integer.parseInt(saisieChaine(scanner, "ID du complément : "));
+        }while (typeComp != 1 && typeComp != 2);
+
+        c.setTypeComplement(TypeComplement.getOptionByValue(typeComp));
 
         return c;
     }
