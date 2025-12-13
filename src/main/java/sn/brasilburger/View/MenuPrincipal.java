@@ -97,8 +97,12 @@ public class MenuPrincipal {
                     menuService.update(menu);
                     System.out.println("Menu ajouté !");
                 }
-                case 2 -> {}
-                case 3 -> {  }
+                case 2 -> {
+                    menuVue.modifierMenu(scanner);
+                }
+                case 3 -> {
+                    menuVue.archiverMenu(scanner);
+                }
                 case 4 -> menuVue.afficheMenus();
                 case 5 -> {  }
                 default -> System.out.println("Choix invalide !");
@@ -119,9 +123,11 @@ public class MenuPrincipal {
                     System.out.println("Complément ajouté !");
                 }
                 case 2 -> {
-
+                    complementVue.modifierComplement(scanner);
                 }
-                case 3 -> {  }
+                case 3 -> {
+                    complementVue.archiverComplement(scanner);
+                }
                 case 4 -> complementVue.afficheComplements();
                 case 5 -> {  }
                 default -> System.out.println("Choix invalide !");

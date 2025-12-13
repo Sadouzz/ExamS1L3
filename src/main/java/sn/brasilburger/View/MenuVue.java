@@ -196,6 +196,21 @@
             System.out.println("Menu modifié avec succès !");
         }
 
+        public void archiverMenu(Scanner scanner) {
+            afficheMenus();
+            int menuId = Integer.parseInt(saisieChaine(scanner, "Saisir l'ID du menu à archiver/désarchiver : "));
+            Menu menu = menuService.selectById(menuId).orElse(null);
+
+            if (menu == null) {
+                System.out.println("Menu introuvable !");
+                return;
+            }
+
+            menu.setArchived(!menu.getArchived());
+            menuService.update(menu);
+
+            System.out.println("Menu " + (menu.getArchived() ? "archivé" : "désarchivé") + " avec succès !");
+        }
 
         public void afficheMenus() {
             List<Menu> menus = menuService.selectAll();
