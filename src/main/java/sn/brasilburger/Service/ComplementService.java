@@ -1,6 +1,7 @@
 package sn.brasilburger.Service;
 
 import sn.brasilburger.Entity.Complement;
+import sn.brasilburger.Entity.Enum.TypeComplement;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ public interface ComplementService {
     Optional<Complement> selectById(int id);
 
     List<Complement> selectAll();
+    List<Complement> selectByType(TypeComplement typeComplement);
 
     int numberOfRows();
 }

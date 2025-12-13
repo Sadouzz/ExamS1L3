@@ -97,6 +97,24 @@ public class ComplementRepositoryImpl implements ComplementRepository {
         return Collections.emptyList();
     }
 
+    @Override
+    public List<Complement> selectByType(TypeComplement typeComplement) {
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "SELECT * FROM complements WHERE type_complement = ?::type_complement"
+            );
+            ps.setString(1, typeComplement.name());
+
+            return database.fetchAll(ps, this::toEntity);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
+
+
     private Complement toEntity(ResultSet rs) throws SQLException {
         Complement c = new Complement();
         c.setId(rs.getInt("id"));

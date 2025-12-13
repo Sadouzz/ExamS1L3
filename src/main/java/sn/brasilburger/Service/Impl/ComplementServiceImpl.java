@@ -1,6 +1,7 @@
 package sn.brasilburger.Service.Impl;
 
 import sn.brasilburger.Entity.Complement;
+import sn.brasilburger.Entity.Enum.TypeComplement;
 import sn.brasilburger.Repository.ComplementRepository;
 import sn.brasilburger.Service.ComplementService;
 
@@ -28,6 +29,11 @@ public class ComplementServiceImpl implements ComplementService {
     @Override
     public List<Complement> selectAll() {
         return complementRepository.selectAll();
+    }
+
+    @Override
+    public List<Complement> selectByType(TypeComplement typeComplement) {
+        return complementRepository.selectByType(typeComplement);
     }
 
     @Override

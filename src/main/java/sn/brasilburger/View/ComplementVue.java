@@ -54,4 +54,13 @@ public class ComplementVue extends Vue {
             liste.forEach(System.out::println);
         }
     }
+
+    public void afficheComplementsParType(TypeComplement typeComplement) {
+        List<Complement> liste = service.selectByType(typeComplement);
+        if (liste.isEmpty()) {
+            System.out.println("Aucune " + typeComplement.name().toLowerCase());
+        } else {
+            liste.forEach(System.out::println);
+        }
+    }
 }

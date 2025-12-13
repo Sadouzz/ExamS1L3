@@ -2,6 +2,7 @@ package sn.brasilburger.Repository;
 
 
 import sn.brasilburger.Entity.Complement;
+import sn.brasilburger.Entity.Enum.TypeComplement;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,8 @@ public interface ComplementRepository {
     Optional<Complement> selectById(int id);
 
     List<Complement> selectAll();
+
+    List<Complement> selectByType(TypeComplement typeComplement);
 
 
 }
