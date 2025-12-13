@@ -119,6 +119,19 @@ public class MenuComplementRepositoryImpl implements MenuComplementRepository {
         return list;
     }
 
+    @Override
+    public void delete(int id) {
+        Connection conn = database.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = conn.prepareStatement("DELETE FROM menu_complement WHERE id = ?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private MenuComplement toEntity(ResultSet rs) throws SQLException {
         MenuComplement mc = new MenuComplement();

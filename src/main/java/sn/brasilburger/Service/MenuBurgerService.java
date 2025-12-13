@@ -15,6 +15,7 @@ public interface MenuBurgerService {
     int numberOfRows();
 
     List<MenuBurger> findByMenuId(int menuId);
+    void delete(int id);
 
 }
 

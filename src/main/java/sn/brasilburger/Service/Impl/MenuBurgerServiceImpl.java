@@ -41,5 +41,11 @@ public class MenuBurgerServiceImpl implements MenuBurgerService {
         return menuBurgerRepository.findByMenuId(menuId);
     }
 
+    @Override
+    public void delete(int id)
+    {
+        menuBurgerRepository.delete(id);
+    }
+
 
 }

@@ -15,6 +15,7 @@ public interface MenuComplementService {
     int numberOfRows();
 
     List<MenuComplement> findByMenuId(int menuId) ;
+    void delete(int id);
 
 }
 

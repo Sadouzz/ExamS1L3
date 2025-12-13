@@ -161,6 +161,41 @@
             return total;
         }
 
+        public void modifierMenu(Scanner scanner) {
+            int menuId = Integer.parseInt(saisieChaine(scanner, "Saisir l'ID du menu à modifier : "));
+            Menu menu = menuService.selectById(menuId).orElse(null);
+            afficheMenus();
+
+            if (menu == null) {
+                System.out.println("Menu introuvable !");
+                return;
+            }
+
+            System.out.println("Modification du menu : " + menu.getLibelle());
+
+            String nouveauLibelle = saisieChaine(scanner, "Nouveau libellé (" + menu.getLibelle() + ") : ");
+            if (!nouveauLibelle.isEmpty()) menu.setLibelle(nouveauLibelle);
+
+            String nouvelleImage = cloudinaryService.uploadImage();
+            if (nouvelleImage != null) menu.setImageUrl(nouvelleImage);
+
+            List<MenuBurger> anciensBurgers = menuBurgerService.findByMenuId(menu.getId());
+            for (MenuBurger mb : anciensBurgers) menuBurgerService.delete(mb.getId());
+
+            List<MenuComplement> anciensComplements = menuComplementService.findByMenuId(menu.getId());
+            for (MenuComplement mc : anciensComplements) menuComplementService.delete(mc.getId());
+
+            double total = 0;
+            total += ajoutBurger(total, menu);
+            total += ajoutComplement(total, menu, TypeComplement.BOISSON);
+            total += ajoutComplement(total, menu, TypeComplement.FRITE);
+
+            menu.setPrix(total);
+            menuService.update(menu);
+
+            System.out.println("Menu modifié avec succès !");
+        }
+
 
         public void afficheMenus() {
             List<Menu> menus = menuService.selectAll();

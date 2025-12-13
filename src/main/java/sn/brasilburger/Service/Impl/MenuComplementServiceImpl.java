@@ -41,5 +41,10 @@ public class MenuComplementServiceImpl implements MenuComplementService {
         return menuComplementRepository.findByMenuId(menuId);
     }
 
+    @Override
+    public void delete(int id){
+        menuComplementRepository.delete(id);
+    }
+
 
 }

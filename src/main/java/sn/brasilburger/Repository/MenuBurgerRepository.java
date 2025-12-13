@@ -13,5 +13,6 @@ public interface MenuBurgerRepository {
 
     List<MenuBurger> selectAll();
     List<MenuBurger> findByMenuId(int menuId);
+    void delete(int id);
 
 }

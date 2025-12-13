@@ -119,6 +119,19 @@ public class MenuBurgerRepositoryImpl implements MenuBurgerRepository {
         return list;
     }
 
+    @Override
+    public void delete(int id) {
+        Connection conn = database.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = conn.prepareStatement("DELETE FROM menu_burger WHERE id = ?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private MenuBurger toEntity(ResultSet rs) throws SQLException {
         MenuBurger mb = new MenuBurger();
