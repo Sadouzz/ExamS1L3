@@ -96,6 +96,36 @@ public class BurgerRepositoryImpl implements BurgerRepository {
         return Collections.emptyList();
     }
 
+    @Override
+    public int update(Burger burger) {
+        try {
+            if (!database.isConnected()) {
+                throw new SQLException("Erreur de connexion à la BD");
+            }
+
+            Connection conn = database.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "UPDATE burgers SET libelle = ?, description = ?, prix = ?, image_url = ?, is_archived = ?, burger_categorie_id = ? " +
+                            "WHERE id = ?"
+            );
+
+            ps.setString(1, burger.getLibelle());
+            ps.setString(2, burger.getDesc());
+            ps.setDouble(3, burger.getPrix());
+            ps.setString(4, burger.getImageUrl());
+            ps.setBoolean(5, burger.getArchived());
+            ps.setInt(6, burger.getBurgerCategorieId());
+            ps.setInt(7, burger.getId());
+
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
     private Burger toEntity(ResultSet rs) throws SQLException {
         Burger burger = new Burger();
         burger.setId(rs.getInt("id"));

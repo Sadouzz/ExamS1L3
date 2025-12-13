@@ -12,6 +12,7 @@ public interface BurgerRepository {
     Optional<Burger> selectById(int id);
 
     List<Burger> selectAll();
+    int update(Burger burger);
 
 
 }

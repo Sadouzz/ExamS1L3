@@ -32,6 +32,12 @@ public class BurgerServiceImpl implements BurgerService {
     }
 
     @Override
+    public int update(Burger burger)
+    {
+        return burgerRepository.update(burger);
+    }
+
+    @Override
     public List<Burger> selectAll() {
         return burgerRepository.selectAll();
     }

@@ -60,6 +60,54 @@ public class BurgerVue extends Vue {
         return b;
     }
 
+    public Burger modifierBurger(Scanner scanner) {
+        if (burgerService.selectAll().isEmpty()) {
+            System.out.println("Aucun burger à modifier !");
+            return null;
+        }
+        afficheBurgers();
+
+        int burgerId;
+        do {
+            burgerId = Integer.parseInt(saisieChaine(scanner, "ID du burger à modifier : "));
+        } while (burgerService.selectById(burgerId).isEmpty());
+
+        Burger burger = burgerService.selectById(burgerId).get();
+
+        System.out.println("Modification du burger : " + burger.getLibelle());
+
+        String libelle = saisieChaine(scanner, "Nouveau libellé (" + burger.getLibelle() + ") : ");
+        if (!libelle.isEmpty()) burger.setLibelle(libelle);
+
+        String desc = saisieChaine(scanner, "Nouvelle description (" + burger.getDesc() + ") : ");
+        if (!desc.isEmpty()) burger.setDesc(desc);
+
+        String prixStr = saisieChaine(scanner, "Nouveau prix (" + burger.getPrix() + ") : ");
+        if (!prixStr.isEmpty()) burger.setPrix(Double.parseDouble(prixStr));
+
+        String imageUrl = cloudinaryService.uploadImage();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            System.out.println("Nouvelle image disponible à : " + imageUrl);
+            burger.setImageUrl(imageUrl);
+        }
+
+        do {
+            burgerCategorieVue.afficheBurgerCategories();
+            String catStr = saisieChaine(scanner, "Nouvelle catégorie ID (" + burger.getBurgerCategorieId() + ") : ");
+            if (!catStr.isEmpty()) burger.setBurgerCategorieId(Integer.parseInt(catStr));
+        } while (burgerCategorieService.selectById(burger.getBurgerCategorieId()).isEmpty());
+
+        int updated = burgerService.update(burger);
+        if (updated > 0) {
+            System.out.println("Burger mis à jour avec succès !");
+        } else {
+            System.out.println("Erreur lors de la mise à jour du burger.");
+        }
+
+        return burger;
+    }
+
+
     public void afficheBurgers() {
         List<Burger> liste = burgerService.selectAll();
         if (liste.isEmpty()) {

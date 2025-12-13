@@ -72,7 +72,9 @@ public class MenuPrincipal {
                     burgerCategorieService.createBurgerCategorie(burgerCategorie);
                     System.out.println("BurgerCategorie ajouté !");
                 }
-                case 3 -> {  }
+                case 3 -> {
+                    burgerVue.modifierBurger(scanner);
+                }
                 case 4 -> {  }
                 case 5 -> burgerVue.afficheBurgers();
                 case 6 -> {  }
