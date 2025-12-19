@@ -51,4 +51,37 @@ public class AuthController : Controller
 
         return RedirectToAction("Index", "Catalog");
     }
+
+    public IActionResult Register() => View();
+
+    [HttpPost]
+    public IActionResult Register(RegisterViewModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+
+        if (_db.Users.Any(u => u.Email == model.Email))
+        {
+            ModelState.AddModelError("Email", "Cet email existe déjà");
+            return View(model);
+        }
+
+        var user = new User
+        {
+            Nom = model.Nom,
+            Prenom = model.Prenom,
+            Tel = model.Tel,
+            Email = model.Email,
+            Role = RoleUser.CLIENT,
+            CreatedAt = DateTime.UtcNow,
+            IsArchived = false
+        };
+
+        user.Password = _hasher.HashPassword(user, model.Password);
+
+        _db.Users.Add(user);
+        _db.SaveChanges();
+
+        return RedirectToAction("Login");
+    }
+
 }
