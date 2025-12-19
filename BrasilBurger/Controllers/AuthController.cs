@@ -84,4 +84,9 @@ public class AuthController : Controller
         return RedirectToAction("Login");
     }
 
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync();
+        return RedirectToAction("Index", "Catalog");
+    }
 }
