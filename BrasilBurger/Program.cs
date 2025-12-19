@@ -1,5 +1,6 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
+using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,9 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        o => o.MapEnum<TypeRetrait>()
+              .MapEnum<StatutCommande>()
+              .MapEnum<StatutLivraison>()
+              .MapEnum<TypeComplement>()
+              .MapEnum<MoyenPaiement>()
+              .MapEnum<RoleUser>()
     )
 );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
