@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\img\\burger.png",
+      "PackagePath": "staticwebassets\\img\\burger.png"
+    },
+    {
       "Id": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

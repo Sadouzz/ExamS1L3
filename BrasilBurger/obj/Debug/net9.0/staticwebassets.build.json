@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8/5NXao3MJWIC4oytYQ6NleseQ5BDLFCwPPllrDiR6E=",
+  "Hash": "pRWmJO8p7QtZ/DeTapeOF+5irQFxFYuLlX3BRIo0+CY=",
   "Source": "BrasilBurger",
   "BasePath": "_content/BrasilBurger",
   "Mode": "Default",
@@ -1025,12 +1025,12 @@
       "OriginalItemSpec": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-b9sayid5wm.gz",
+      "Identity": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-2jkly1y71f.gz",
       "SourceId": "BrasilBurger",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/BrasilBurger",
-      "RelativePath": "css/site#[.{fingerprint=b9sayid5wm}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=2jkly1y71f}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -1039,8 +1039,8 @@
       "RelatedAsset": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\css\\site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "0suozzrugb",
-      "Integrity": "0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y=",
+      "Fingerprint": "k4zh5ie1pa",
+      "Integrity": "7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\css\\site.css"
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "b9sayid5wm",
-      "Integrity": "j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=",
+      "Fingerprint": "2jkly1y71f",
+      "Integrity": "LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1443,6 +1443,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\img\\burger.png",
+      "SourceId": "BrasilBurger",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\",
+      "BasePath": "_content/BrasilBurger",
+      "RelativePath": "img/burger#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hxjv2mjxl9",
+      "Integrity": "W7+eM0q8yqeMQ5Uie0m1ZzMA7gqip0G4XZ+oXJ9R28o=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\burger.png"
     },
     {
       "Identity": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\js\\site.js",
@@ -2752,7 +2773,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2813,7 +2834,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2858,7 +2879,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2913,7 +2934,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2974,7 +2995,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3019,7 +3040,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3074,7 +3095,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3127,7 +3148,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3164,7 +3185,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3211,7 +3232,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3264,7 +3285,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3301,7 +3322,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 12:54:31 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3324,13 +3345,13 @@
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css",
-      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-b9sayid5wm.gz",
+      "Route": "css/site.2jkly1y71f.css",
+      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-2jkly1y71f.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.003134796238"
+          "Quality": "0.001607717042"
         }
       ],
       "ResponseHeaders": [
@@ -3340,15 +3361,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "318"
+          "Value": "621"
         },
         {
           "Name": "ETag",
-          "Value": "\"0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y=\""
+          "Value": "\"7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 11:30:12 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3368,13 +3389,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "W/\"LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "2jkly1y71f"
         },
         {
           "Name": "label",
@@ -3382,12 +3403,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw="
         }
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css",
+      "Route": "css/site.2jkly1y71f.css",
       "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3397,7 +3418,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "667"
+          "Value": "1553"
         },
         {
           "Name": "Content-Type",
@@ -3405,11 +3426,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "\"LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 11:30:12 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3419,7 +3440,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "2jkly1y71f"
         },
         {
           "Name": "label",
@@ -3427,13 +3448,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw="
         }
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css.gz",
-      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-b9sayid5wm.gz",
+      "Route": "css/site.2jkly1y71f.css.gz",
+      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-2jkly1y71f.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3442,7 +3463,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "318"
+          "Value": "621"
         },
         {
           "Name": "Content-Type",
@@ -3450,11 +3471,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y=\""
+          "Value": "\"7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 11:30:12 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3472,7 +3493,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "2jkly1y71f"
         },
         {
           "Name": "label",
@@ -3480,18 +3501,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y="
+          "Value": "sha256-7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E="
         }
       ]
     },
     {
       "Route": "css/site.css",
-      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-b9sayid5wm.gz",
+      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-2jkly1y71f.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.003134796238"
+          "Quality": "0.001607717042"
         }
       ],
       "ResponseHeaders": [
@@ -3501,15 +3522,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "318"
+          "Value": "621"
         },
         {
           "Name": "ETag",
-          "Value": "\"0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y=\""
+          "Value": "\"7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 11:30:12 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3529,13 +3550,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "W/\"LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw="
         }
       ]
     },
@@ -3550,7 +3571,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "667"
+          "Value": "1553"
         },
         {
           "Name": "Content-Type",
@@ -3558,11 +3579,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "\"LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 11:30:12 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3572,13 +3593,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-LkGyh55f9jUKTaFYhyCBzgdcJjWVJXF3E33Je4SQhSw="
         }
       ]
     },
     {
       "Route": "css/site.css.gz",
-      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-b9sayid5wm.gz",
+      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\obj\\Debug\\net9.0\\compressed\\qvqdv9gdui-2jkly1y71f.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3587,7 +3608,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "318"
+          "Value": "621"
         },
         {
           "Name": "Content-Type",
@@ -3595,11 +3616,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y=\""
+          "Value": "\"7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 19 Dec 2025 11:30:12 GMT"
+          "Value": "Fri, 19 Dec 2025 20:15:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3617,7 +3638,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y="
+          "Value": "sha256-7GYxOtCpHTmcixBfaHV3mG4ePrW9dzOchOcHdGDoJ/E="
         }
       ]
     },
@@ -3916,6 +3937,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-wfFuuYm+Lh6RbCeeiUqxw334b/hIOkp5j9eokGUM1Y0="
+        }
+      ]
+    },
+    {
+      "Route": "img/burger.hxjv2mjxl9.png",
+      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\img\\burger.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2021272"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"W7+eM0q8yqeMQ5Uie0m1ZzMA7gqip0G4XZ+oXJ9R28o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 14 Dec 2025 10:22:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hxjv2mjxl9"
+        },
+        {
+          "Name": "label",
+          "Value": "img/burger.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-W7+eM0q8yqeMQ5Uie0m1ZzMA7gqip0G4XZ+oXJ9R28o="
+        }
+      ]
+    },
+    {
+      "Route": "img/burger.png",
+      "AssetFile": "D:\\Licence\\Licence 3\\Semestre 1\\ExamProg\\CSharp\\BrasilBurger\\wwwroot\\img\\burger.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2021272"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"W7+eM0q8yqeMQ5Uie0m1ZzMA7gqip0G4XZ+oXJ9R28o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 14 Dec 2025 10:22:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-W7+eM0q8yqeMQ5Uie0m1ZzMA7gqip0G4XZ+oXJ9R28o="
         }
       ]
     },
