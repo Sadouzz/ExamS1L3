@@ -32,6 +32,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<BurgerService>();
 builder.Services.AddScoped<MenuService>();
+builder.Services.AddScoped<ComplementService>();
 
 var app = builder.Build();
 
