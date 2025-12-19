@@ -1,6 +1,7 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
               .MapEnum<RoleUser>()
     )
 );
+
+builder.Services.AddScoped<BurgerService>();
+builder.Services.AddScoped<MenuService>();
 
 var app = builder.Build();
 
@@ -37,7 +41,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Catalog}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

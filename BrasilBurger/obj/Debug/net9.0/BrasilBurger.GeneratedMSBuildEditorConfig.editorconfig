@@ -28,12 +28,24 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Burger/BurgerCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVyZ2VyXEJ1cmdlckNhcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Catalog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Menu/MenuCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxNZW51Q2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Shared/Error.cshtml]

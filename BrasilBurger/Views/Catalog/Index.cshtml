@@ -1,0 +1,37 @@
+@using Models
+@model Catalog
+@{
+    ViewData["Title"] = "Catalogue";
+}
+
+<div class="container-fluid mt-5">
+
+    <!-- Sommaire / Filtres -->
+    <nav class="mb-4">
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#burgers" class="btn btn-warning btn-sm text-white">Burgers</a></li>
+            <li class="list-inline-item"><a href="#menus" class="btn btn-warning btn-sm text-white">Menus</a></li>
+        </ul>
+    </nav>
+
+    <h2 class="mb-4 fw-bold text-uppercase" id="burgers">Nos Burgers</h2>
+    <div class="row">
+        @foreach (var burger in Model.Burgers)
+        {
+            @Html.Partial("~/Views/Burger/BurgerCard.cshtml", burger)
+        }
+    </div>
+
+
+    <hr class="my-2" />
+
+    <h2 class="mb-4 fw-bold text-uppercase" id="menus">Nos Menus</h2>
+    <div class="row">
+        @foreach (var menu in Model.Menus)
+        {
+            @Html.Partial("~/Views/Menu/MenuCard.cshtml", menu)
+        }
+    </div>
+
+
+</div>

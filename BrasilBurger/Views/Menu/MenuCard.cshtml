@@ -1,0 +1,15 @@
+@using Models
+@model Menu
+
+<div class="col-md-2 mb-4">
+    <div
+        class="card shadow rounded-1 border-0 h-100 shadow-sm bg-danger d-flex flex-column align-items-center p-2">
+        <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Libelle"
+            style="max-height: 190px; max-width: 270px; object-fit: cover;" />
+        <div class="card-body text-center text-white">
+            <h2 class="card-title text-uppercase">@Model.Libelle</h2>
+            <h4 class="card-text">@Model.Prix F CFA</h4>
+            <a href="/catalog/menu/@Model.Id" class="btn btn-primary rounded-pill">COMMANDER</a>
+        </div>
+    </div>
+</div>
