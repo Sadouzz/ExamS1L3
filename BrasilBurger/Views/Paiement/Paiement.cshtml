@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Paiement";
+    ViewData["PageTitle"] = "Paiement";
+    var commande = ViewBag.Commande as Models.Commande;
+}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-3">Paiement de la commande #@commande.Id</h2>
+
+        <h4 class="text-success mb-4">
+            Montant à payer : @commande.MontantTotal XOF
+        </h4>
+
+        <div class="row g-3">
+            <!-- Wave -->
+            <div class="col-md-4">
+                <form method="post" asp-action="PayerWave">
+                    <input type="hidden" name="commandeId" value="@commande.Id" />
+                    <button class="btn btn-primary w-100">
+                        Payer avec Wave
+                    </button>
+                </form>
+            </div>
+
+            <!-- Orange Money -->
+            <div class="col-md-4">
+                <form method="post" asp-action="PayerOrangeMoney">
+                    <input type="hidden" name="commandeId" value="@commande.Id" />
+                    <button class="btn btn-warning w-100">
+                        Payer avec Orange Money
+                    </button>
+                </form>
+            </div>
+
+            <!-- Payer plus tard -->
+            <div class="col-md-4">
+                <form method="post" asp-action="PayerPlusTard">
+                    <input type="hidden" name="commandeId" value="@commande.Id" />
+                    <button class="btn btn-secondary w-100">
+                        Payer plus tard
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

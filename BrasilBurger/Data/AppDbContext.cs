@@ -36,7 +36,7 @@ namespace Data
             modelBuilder.Entity<MenuBurger>().ToTable("menu_burger");
             modelBuilder.Entity<MenuComplement>().ToTable("menu_complement");
 
-            modelBuilder.Entity<Paiement>().ToTable("paiments");
+            modelBuilder.Entity<Paiement>().ToTable("paiements");
             modelBuilder.Entity<Quartier>().ToTable("quartiers");
             modelBuilder.Entity<User>().ToTable("users");
             modelBuilder.Entity<Zone>().ToTable("zones");

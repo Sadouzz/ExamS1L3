@@ -52,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWFuZGVcQ2hvaXhDb21wbGVtZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Commande/InfosLivraison.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWFuZGVcSW5mb3NMaXZyYWlzb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Menu/MenuCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxNZW51Q2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Paiement/Paiement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFpZW1lbnRcUGFpZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Licence/Licence 3/Semestre 1/ExamProg/CSharp/BrasilBurger/Views/Shared/Error.cshtml]

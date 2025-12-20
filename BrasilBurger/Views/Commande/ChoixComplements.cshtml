@@ -88,38 +88,7 @@
                 </div>
             }
         </div>
-
-
-
-        <div class="row">
-            @foreach (var comp in complements)
-            {
-                <div class="col-md-3 mb-4">
-                    <label class="w-100">
-                        <input type="checkbox" name="selectedComplements" value="@comp.Id"
-                            class="d-none complement-check" />
-
-                        <div class="card shadow rounded-1 border-0 h-100 bg-transparent complement-card">
-                            <div class="back-red h-100 w-100">
-                                <div class="card-body text-center text-white">
-                                    <img src="@comp.ImageUrl" class="card-img-top mb-3" alt="@comp.Libelle"
-                                        style="max-height: 150px; object-fit: cover;" />
-
-                                    <h5 class="card-title text-uppercase">
-                                        @comp.Libelle
-                                    </h5>
-
-                                    <p class="card-text">
-                                        @comp.Prix F CFA
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-            }
-        </div>
-
+        
         <button class="btn btn-primary mt-3 px-5 rounded-pill">
             Continuer
         </button>
