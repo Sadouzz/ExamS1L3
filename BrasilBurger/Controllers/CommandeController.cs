@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 public class CommandeController : Controller
 {
@@ -14,6 +15,7 @@ public class CommandeController : Controller
     private readonly ComplementService _complementService;
     private readonly QuartierService _quartierService;
     private readonly ZoneService _zoneService;
+    private readonly CommandeService _commandeService;
     private readonly AppDbContext _db;
 
     public CommandeController(
@@ -22,6 +24,7 @@ public class CommandeController : Controller
         ComplementService complementService,
         QuartierService quartierService,
         ZoneService zoneService,
+        CommandeService commandeService,
         AppDbContext db)
     {
         _burgerService = burgerService;
@@ -29,6 +32,7 @@ public class CommandeController : Controller
         _complementService = complementService;
         _quartierService = quartierService;
         _zoneService = zoneService;
+        _commandeService = commandeService;
         _db = db;
     }
 
@@ -184,22 +188,31 @@ public class CommandeController : Controller
 
         _db.SaveChanges();
 
-        return RedirectToAction("Paiement", "Paiement", new { commandeId = commande.Id });
+        return RedirectToAction("Payer", "Paiement", new { commandeId = commande.Id });
 
     }
 
-    [HttpGet]
-    public IActionResult Paiement(long commandeId)
+    public IActionResult Annuler(long id)
     {
-        var commande = _db.Commandes
-            .Include(c => c.CommandeItems)
-            .FirstOrDefault(c => c.Id == commandeId);
+        var commande = _commandeService.GetById(id);
 
         if (commande == null)
             return NotFound();
 
-        ViewBag.Commande = commande;
-        return View();
+        commande.Statut = StatutCommande.ANNULEE;
+        _db.SaveChanges();
+
+        return RedirectToAction("UserCommandes");
     }
 
+
+    public IActionResult UserCommandes()
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+        var userId = long.Parse(userIdClaim.Value);
+        var commandes = _commandeService.GetByUserId(userId);
+
+        ViewBag.Commandes = commandes;
+        return View();
+    }
 }

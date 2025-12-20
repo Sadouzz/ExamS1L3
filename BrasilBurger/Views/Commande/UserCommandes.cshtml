@@ -1,0 +1,164 @@
+@using Models
+
+@{
+    ViewData["Title"] = "Mes Commandes";
+    ViewData["PageTitle"] = "Mes Commandes";
+    var commandes = ViewBag.Commandes as List<Models.Commande>;
+}
+
+<h2 class="my-4">Mes Commandes</h2>
+
+@if (commandes == null || !commandes.Any())
+{
+    <p>Vous n'avez aucune commande.</p>
+}
+else
+{
+    <table class="table table-hover m-0">
+        <thead class="table-danger">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Montant</th>
+                <th>Statut</th>
+                <th>Payé</th>
+                <th>Retrait</th>
+                <th>Adresse</th>
+                <th>Items</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var commande in commandes)
+            {
+                <tr>
+                    <td>
+                        <strong>#@commande.Id</strong>
+                    </td>
+
+                    <td>
+                        <small class="text-muted">
+                            @commande.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                        </small>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-dark-subtle border border-black text-black">
+                            @commande.MontantTotal XOF
+                        </span>
+                    </td>
+
+                    <td>
+                        @if (commande.Statut == StatutCommande.ANNULEE)
+                        {
+                            <span class="badge bg-danger-subtle border border-danger text-danger">
+                                @commande.Statut
+                            </span>
+                        }
+                        else if (commande.Statut == StatutCommande.EN_ATTENTE)
+                        {
+                            <span class="badge bg-secondary-subtle border border-secondary text-secondary">
+                                @commande.Statut
+                            </span>
+                        }
+                        else if (commande.Statut == StatutCommande.VALIDEE)
+                        {
+                            <span class="badge bg-warning-subtle border border-warning text-warning">
+                                @commande.Statut
+                            </span>
+                        }
+                        else{
+                            <span class="badge bg-success-subtle border border-success text-success">
+                                @commande.Statut
+                            </span>
+                        }
+                    </td>
+
+                    <td>
+                        @if (commande.IsPaid)
+                        {
+                            <span class="badge bg-success-subtle border border-success text-success">
+                                Payée
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger-subtle border border-danger text-danger">
+                                Non Payée
+                            </span>
+                        }
+
+                    </td>
+
+                    <td>
+                        <span class="badge bg-info-subtle border border-info text-info">
+                            @commande.TypeRetrait
+                        </span>
+                    </td>
+
+                    <td>
+                        <small>
+                            <i class="bi bi-geo-alt me-1"></i>
+                            @commande.Adresse
+                        </small>
+                    </td>
+
+                    <td>
+                        <ul class="list-unstyled mb-0">
+                            @foreach (var item in commande.CommandeItems)
+                            {
+                                <li>
+                                    <small>
+                                        @if (item.Burger != null)
+                                        {
+                                            <strong>Burger :</strong>
+                                            @item.Burger.Libelle
+                                        }
+                                        @if (item.Menu != null)
+                                        {
+                                            <strong>Menu :</strong>
+                                            @item.Menu.Libelle
+                                        }
+                                        @if (item.Complement != null)
+                                        {
+                                            <strong>Complément :</strong>
+                                            @item.Complement.Libelle
+                                        }
+                                        — Qté : @item.Quantite
+                                    </small>
+                                </li>
+                            }
+                        </ul>
+                    </td>
+
+                    <td>
+                        <div class="d-flex gap-2">
+
+                            @if (commande.Statut == StatutCommande.EN_ATTENTE)
+                            {
+                                <a asp-controller="Paiement" asp-action="Payer" asp-route-id="@commande.Id"
+                                    class="btn btn-success btn-sm px-3">
+                                    <i class="bi bi-credit-card me-1"></i>
+                                    Payer
+                                </a>
+                            }
+
+                            @if (commande.Statut == StatutCommande.EN_ATTENTE)
+                            {
+                                <a asp-controller="Commande" asp-action="Annuler" asp-route-id="@commande.Id"
+                                    class="btn btn-danger btn-sm px-3"
+                                    onclick="return confirm('Voulez-vous vraiment annuler cette commande ?');">
+                                    <i class="bi bi-x-circle me-1"></i>
+                                    Annuler
+                                </a>
+                            }
+
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

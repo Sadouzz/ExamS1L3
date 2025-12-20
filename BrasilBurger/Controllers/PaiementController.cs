@@ -18,9 +18,9 @@ namespace Controllers
             db = _db;
         }
 
-        public IActionResult Paiement(long commandeId)
+        public IActionResult Payer(long ID)
         {
-            var commande = commandeService.GetById(commandeId);
+            var commande = commandeService.GetById(ID);
 
             if (commande == null)
                 return NotFound();
@@ -32,31 +32,21 @@ namespace Controllers
         [HttpPost]
         public IActionResult PayerPlusTard(long commandeId)
         {
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("UserCommandes", "Commande");
         }
 
         [HttpPost]
         public IActionResult PayerWave(long commandeId)
         {
-            var commande = commandeService.GetById(commandeId);
             CreatePaiement(MoyenPaiement.WAVE, commandeId);
-            commande.IsPaid = true;
-            commande.Statut = StatutCommande.VALIDEE;
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("UserCommandes", "Commande");
         }
 
         [HttpPost]
         public IActionResult PayerOrangeMoney(long commandeId)
         {
-            var commande = commandeService.GetById(commandeId);
             CreatePaiement(MoyenPaiement.OM, commandeId);
-            commande.IsPaid = true;
-            commande.Statut = StatutCommande.VALIDEE;
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("UserCommandes", "Commande");
         }
 
         public void CreatePaiement(MoyenPaiement moyenPaiement, long commandeId)
@@ -70,6 +60,8 @@ namespace Controllers
                 CommandeId = commandeId,
                 MoyenPaiement = moyenPaiement
             };
+            commande.IsPaid = true;
+            commande.Statut = StatutCommande.VALIDEE;
             db.Paiements.Add(paiement);
             db.SaveChanges();
         }
