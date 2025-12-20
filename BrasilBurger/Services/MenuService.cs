@@ -22,7 +22,6 @@ namespace Services
 
             if (menu == null) return null;
 
-            // Inclure les burgers et les complements
             menu.MenuBurgers = _db.MenuBurgers
                                   .Include(mb => mb.Burger)
                                   .Where(mb => mb.MenuId == menu.Id)

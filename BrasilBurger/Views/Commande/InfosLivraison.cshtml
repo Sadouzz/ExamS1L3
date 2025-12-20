@@ -1,0 +1,131 @@
+@{
+    ViewData["Title"] = "Commander " + ViewBag.ItemName;
+    ViewData["PageTitle"] = "Commander";
+    var complements = ViewBag.SelectedComplements as List<Models.Complement>;
+    var quartiers = ViewBag.Quartiers as List<Models.Quartier>;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-9">
+            <div class="card shadow-sm p-3">
+                <div class="card mb-2 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <img src="@ViewBag.MainItem.ImageUrl" alt="@ViewBag.MainItem.Libelle"
+                                class="img-fluid rounded shadow" style="max-width: 50px; max-height: 50px;" />
+                            <div class="ps-3">
+                                <h4 class="card-title mb-0 fw-bold">@ViewBag.MainItem.Libelle</h4>
+                                <small class="mb-0">Quantité: 1</small>
+                                <h5 class="mb-0 fw-semibold">@ViewBag.MainItem.Prix XOF</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @if (complements != null)
+            {
+                foreach (var c in complements)
+                {
+                    <div class="card mb-2 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <img src="@c.ImageUrl" alt="@c.Libelle" class="img-fluid rounded shadow"
+                                    style="max-width: 50px; max-height: 50px;" />
+                                <div class="ps-3">
+                                    <h4 class="card-title mb-0 fw-bold">@c.Libelle</h4>
+                                    <p class="mb-0">Complément</p>
+                                    <small class="mb-0">Quantité: 1</small>
+                                    <h5 class="mb-0 fw-semibold">@c.Prix XOF</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card shadow-sm p-3">
+                <h3>Procéder au paiement</h3>
+                <form method="post" asp-controller="Commande" asp-action="Create">
+                    <input type="hidden" name="type" value="@ViewBag.Type" />
+                    <input type="hidden" name="itemId" value="@ViewBag.ItemId" />
+
+                    @if (complements != null)
+                    {
+                        foreach (var c in complements)
+                        {
+                            <input type="hidden" name="selectedComplements" value="@c" />
+                        }
+                    }
+
+                    <label>Type de retrait</label>
+                    <select id="typeRetraitSelect" name="typeRetrait" class="form-select">
+                        <option value="SUR_PLACE">Sur place</option>
+                        <option value="A_EMPORTER">À emporter</option>
+                        <option value="LIVRAISON">Livraison</option>
+                    </select>
+
+                    <div id="livraisonFields" style="display:none;">
+                        <label>Quartier</label>
+                        <select id="quartierSelect" name="quartier" class="form-select">
+                            @foreach (var q in quartiers)
+                            {
+                                <option value="@q.Id" data-prix="@q.Zone.PrixLivraison">
+                                    @q.Nom
+                                </option>
+                            }
+                        </select>
+
+                        <label>Adresse</label>
+                        <input class="form-control" name="adresse" />
+                    </div>
+
+
+                    <button class="btn btn-success mt-3">Valider la commande</button>
+                </form>
+
+                <h3 id="prixLivraison" class="mt-3 text-success" style="display:none;">
+                    Prix de livraison : <span id="prixValue"></span> XOF
+                </h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const typeRetraitSelect = document.getElementById("typeRetraitSelect");
+    const livraisonFields = document.getElementById("livraisonFields");
+    const quartierSelect = document.getElementById("quartierSelect");
+    const prixLivraison = document.getElementById("prixLivraison");
+    const prixValue = document.getElementById("prixValue");
+
+    function toggleLivraison() {
+        if (typeRetraitSelect.value === "LIVRAISON") {
+            livraisonFields.style.display = "block";
+
+            const selectedOption = quartierSelect.options[quartierSelect.selectedIndex];
+            const prix = selectedOption.getAttribute("data-prix");
+
+            prixValue.innerText = prix;
+            prixLivraison.style.display = "block";
+        } else {
+            livraisonFields.style.display = "none";
+            prixLivraison.style.display = "none";
+        }
+    }
+
+    typeRetraitSelect.addEventListener("change", toggleLivraison);
+
+    quartierSelect.addEventListener("change", function () {
+        if (typeRetraitSelect.value === "LIVRAISON") {
+            const prix = this.options[this.selectedIndex].getAttribute("data-prix");
+            prixValue.innerText = prix;
+            prixLivraison.style.display = "block";
+        }
+    });
+
+    toggleLivraison();
+</script>
