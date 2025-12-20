@@ -30,9 +30,19 @@
                 }
             </ul>
 
-            <a href="/commande/commander?type=menu&id=@Model.Id" class="btn btn-success btn-lg mt-3">
-                Commander ce menu
-            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/commande/commander?type=menu&id=@Model.Id" class="btn btn-success btn-lg mt-3">
+                    Commander ce menu
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="Login" class="text-decoration-none text-white btn btn-success">
+                    Se Connecter pour continuer
+                </a>
+            }
+
         </div>
     </div>
 </div>

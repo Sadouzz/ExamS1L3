@@ -15,9 +15,18 @@
             <h3 class="fw-light">@Model.Desc</h3>
             <h2 class="fw-bold">@Model.Prix F CFA</h2>
 
-            <a href="/commande/commander?type=burger&id=@Model.Id" class="btn btn-primary btn-lg mt-3">
-                Commander
-            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/commande/commander?type=burger&id=@Model.Id" class="btn btn-primary btn-lg mt-3">
+                    Commander
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="Login" class="text-decoration-none text-white btn btn-success">
+                    Se Connecter pour continuer
+                </a>
+            }
         </div>
     </div>
 </div>
