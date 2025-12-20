@@ -16,10 +16,15 @@ public class AuthController : Controller
         _db = db;
     }
 
-    public IActionResult Login() => View();
+    public IActionResult Login(string returnUrl = null)
+    {
+        ViewBag.ReturnUrl = returnUrl;
+        return View();
+    }
+
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel model)
+    public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
     {
         if (!ModelState.IsValid) return View(model);
 
@@ -49,13 +54,23 @@ public class AuthController : Controller
             CookieAuthenticationDefaults.AuthenticationScheme,
             new ClaimsPrincipal(identity));
 
+        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+        {
+            return Redirect(returnUrl);
+        }
+
         return RedirectToAction("Index", "Catalog");
+
     }
 
-    public IActionResult Register() => View();
+    public IActionResult Register(string returnUrl = null)
+    {
+        ViewBag.ReturnUrl = returnUrl;
+        return View();
+    }
 
     [HttpPost]
-    public IActionResult Register(RegisterViewModel model)
+    public IActionResult Register(RegisterViewModel model, string returnUrl = null)
     {
         if (!ModelState.IsValid) return View(model);
 
@@ -81,7 +96,14 @@ public class AuthController : Controller
         _db.Users.Add(user);
         _db.SaveChanges();
 
-        return RedirectToAction("Login");
+
+        /*if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+        {
+            return Redirect(returnUrl);
+        }*/
+
+        return RedirectToAction("Login", new { returnUrl });
+
     }
 
     public async Task<IActionResult> Logout()

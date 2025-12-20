@@ -10,6 +10,7 @@
 
     <form asp-action="Register" method="post">
         @Html.AntiForgeryToken()
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
 
         <div class="mb-3">
             <label>Nom</label>
@@ -42,6 +43,6 @@
     </form>
 
     <div class="text-center mt-3">
-        <a asp-action="Login">Déjà un compte ? Se connecter</a>
+        <a asp-action="Login" asp-route-returnUrl="@ViewBag.ReturnUrl">Déjà un compte ? Se connecter</a>
     </div>
 </div>

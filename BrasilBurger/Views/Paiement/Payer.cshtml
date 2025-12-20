@@ -13,7 +13,6 @@
         </h4>
 
         <div class="row g-3">
-            <!-- Wave -->
             <div class="col-md-4">
                 <form method="post" asp-action="PayerWave">
                     <input type="hidden" name="commandeId" value="@commande.Id" />
@@ -23,7 +22,6 @@
                 </form>
             </div>
 
-            <!-- Orange Money -->
             <div class="col-md-4">
                 <form method="post" asp-action="PayerOrangeMoney">
                     <input type="hidden" name="commandeId" value="@commande.Id" />
@@ -33,7 +31,6 @@
                 </form>
             </div>
 
-            <!-- Payer plus tard -->
             <div class="col-md-4">
                 <form method="post" asp-action="PayerPlusTard">
                     <input type="hidden" name="commandeId" value="@commande.Id" />

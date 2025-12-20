@@ -38,7 +38,9 @@
             }
             else
             {
-                <a asp-controller="Auth" asp-action="Login" class="text-decoration-none text-white btn btn-success">
+                <a asp-controller="Auth" asp-action="Login"
+                    asp-route-returnUrl="@Url.Action("Commander", "Commande", new { type = "menu", id = Model.Id })"
+                    class="text-decoration-none text-white btn btn-success">
                     Se Connecter pour continuer
                 </a>
             }

@@ -188,7 +188,7 @@ public class CommandeController : Controller
 
         _db.SaveChanges();
 
-        return RedirectToAction("Payer", "Paiement", new { commandeId = commande.Id });
+        return RedirectToAction("Payer", "Paiement", new { id = commande.Id });
 
     }
 
