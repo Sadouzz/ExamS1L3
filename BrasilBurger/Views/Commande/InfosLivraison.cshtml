@@ -5,95 +5,196 @@
     var quartiers = ViewBag.Quartiers as List<Models.Quartier>;
 }
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-9">
-            <div class="card shadow-sm p-3">
-                <div class="card mb-2 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <img src="@ViewBag.MainItem.ImageUrl" alt="@ViewBag.MainItem.Libelle"
-                                class="img-fluid rounded shadow" style="max-width: 50px; max-height: 50px;" />
-                            <div class="ps-3">
-                                <h4 class="card-title mb-0 fw-bold">@ViewBag.MainItem.Libelle</h4>
-                                <small class="mb-0">Quantité: 1</small>
-                                <h5 class="mb-0 fw-semibold">@ViewBag.MainItem.Prix XOF</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h3>Passer une commande</h3>
+    </div>
 
-            @if (complements != null)
-            {
-                foreach (var c in complements)
-                {
-                    <div class="card mb-2 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="@c.ImageUrl" alt="@c.Libelle" class="img-fluid rounded shadow"
-                                    style="max-width: 50px; max-height: 50px;" />
-                                <div class="ps-3">
-                                    <h4 class="card-title mb-0 fw-bold">@c.Libelle</h4>
-                                    <p class="mb-0">Complément</p>
-                                    <small class="mb-0">Quantité: 1</small>
-                                    <h5 class="mb-0 fw-semibold">@c.Prix XOF</h5>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="card shadow border-0 rounded-0 h-100">
+                    <div class="card-header bg-white border-bottom">
+                        <h5 class="mb-0">
+                            <i class="bi bi-cart-check me-2 text-primary"></i>
+                            Votre commande
+                        </h5>
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="card mb-3 border shadow-sm rounded-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary bg-opacity-10 rounded d-flex align-items-center justify-content-center"
+                                        style="min-width: 70px; min-height: 70px; max-width: 70px; max-height: 70px;">
+                                        <img src="@ViewBag.MainItem.ImageUrl" alt="@ViewBag.MainItem.Libelle"
+                                            class="img-fluid rounded"
+                                            style="max-width: 100%; max-height: 100%; object-fit: cover;" />
+                                    </div>
+                                    <div class="ps-3 flex-grow-1">
+                                        <h5 class="mb-1 fw-bold">@ViewBag.MainItem.Libelle</h5>
+                                        <span class="badge bg-primary-subtle border border-primary text-primary">
+                                            Article principal
+                                        </span>
+                                        <div class="mt-2">
+                                            <small class="text-muted">
+                                                <i class="bi bi-box me-1"></i>Quantité: 1
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <h4 class="mb-0 fw-bold text-success">@ViewBag.MainItem.Prix <small>XOF</small>
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
-            }
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card shadow-sm p-3">
-                <h3>Procéder au paiement</h3>
-                <form method="post" asp-controller="Commande" asp-action="Create">
-                    <input type="hidden" name="type" value="@ViewBag.Type" />
-                    <input type="hidden" name="itemId" value="@ViewBag.ItemId" />
 
-                    @if (complements != null)
-                    {
-                        foreach (var c in complements)
+                        @if (complements != null && complements.Count > 0)
                         {
-                            <input type="hidden" name="selectedComplements" value="@c" />
-                        }
-                    }
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-3">
+                                    <i class="bi bi-plus-circle me-2"></i>Compléments sélectionnés
+                                </h6>
+                            </div>
 
-                    <label>Type de retrait</label>
-                    <select id="typeRetraitSelect" name="typeRetrait" class="form-select">
-                        <option value="SUR_PLACE">Sur place</option>
-                        <option value="A_EMPORTER">À emporter</option>
-                        <option value="LIVRAISON">Livraison</option>
-                    </select>
-
-                    <div id="livraisonFields" style="display:none;">
-                        <label>Quartier</label>
-                        <select id="quartierSelect" name="quartier" class="form-select">
-                            @foreach (var q in quartiers)
+                            foreach (var c in complements)
                             {
-                                <option value="@q.Id" data-prix="@q.Zone.PrixLivraison">
-                                    @q.Nom
-                                </option>
+                                <div class="card mb-3 border shadow-sm rounded-0">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-success bg-opacity-10 rounded d-flex align-items-center justify-content-center"
+                                                style="min-width: 70px; min-height: 70px; max-width: 70px; max-height: 70px;">
+                                                <img src="@c.ImageUrl" alt="@c.Libelle" class="img-fluid rounded"
+                                                    style="max-width: 100%; max-height: 100%; object-fit: cover;" />
+                                            </div>
+                                            <div class="ps-3 flex-grow-1">
+                                                <h6 class="mb-1 fw-semibold">@c.Libelle</h6>
+                                                <span class="badge bg-success-subtle border border-success text-success">
+                                                    Complément
+                                                </span>
+                                                <div class="mt-2">
+                                                    <small class="text-muted">
+                                                        <i class="bi bi-box me-1"></i>Quantité: 1
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="text-end">
+                                                <h5 class="mb-0 fw-semibold text-success">@c.Prix <small>XOF</small></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             }
-                        </select>
+                        }
+                    </div>
+                </div>
+            </div>
 
-                        <label>Adresse</label>
-                        <input class="form-control" name="adresse" />
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow border-0 rounded-0 sticky-top" style="top: 20px;">
+                    <div class="card-header bg-white border-bottom">
+                        <h5 class="mb-0">
+                            <i class="bi bi-credit-card me-2 text-success"></i>
+                            Finaliser la commande
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-controller="Commande" asp-action="Create">
+                            <input type="hidden" name="type" value="@ViewBag.Type" />
+                            <input type="hidden" name="itemId" value="@ViewBag.ItemId" />
+
+                            @if (complements != null)
+                            {
+                                foreach (var c in complements)
+                                {
+                                    <input type="hidden" name="selectedComplements" value="@c" />
+                                }
+                            }
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                    <i class="bi bi-truck me-1"></i>Type de retrait
+                                </label>
+                                <select id="typeRetraitSelect" name="typeRetrait" class="form-select rounded-0">
+                                    <option value="SUR_PLACE">
+                                        <i class="bi bi-house"></i> Sur place
+                                    </option>
+                                    <option value="A_EMPORTER">
+                                        <i class="bi bi-bag"></i> À emporter
+                                    </option>
+                                    <option value="LIVRAISON">
+                                        <i class="bi bi-truck"></i> Livraison
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div id="livraisonFields" style="display:none;">
+                                <div class="alert alert-info rounded-0 d-flex align-items-start" role="alert">
+                                    <i class="bi bi-info-circle me-2 mt-1"></i>
+                                    <small>Veuillez sélectionner votre quartier et indiquer votre adresse
+                                        précise.</small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">
+                                        <i class="bi bi-geo-alt me-1"></i>Quartier
+                                    </label>
+                                    <select id="quartierSelect" name="quartier" class="form-select rounded-0">
+                                        @foreach (var q in quartiers)
+                                        {
+                                            <option value="@q.Id" data-prix="@q.Zone.PrixLivraison">
+                                                @q.Nom
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">
+                                        <i class="bi bi-house-door me-1"></i>Adresse
+                                    </label>
+                                    <input type="text" class="form-control rounded-0" name="adresse"
+                                        placeholder="Entrez votre adresse complète" />
+                                </div>
+
+                                <div id="prixLivraison"
+                                    class="card bg-success-subtle border border-success rounded-0 mb-3"
+                                    style="display:none;">
+                                    <div class="card-body py-2">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-success fw-semibold">
+                                                <i class="bi bi-truck me-1"></i>Frais de livraison
+                                            </span>
+                                            <span class="text-success fw-bold">
+                                                <span id="prixValue"></span> XOF
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 rounded-0 py-2 fw-semibold">
+                                <i class="bi bi-check-circle me-2"></i>
+                                Valider la commande
+                            </button>
+                        </form>
                     </div>
 
-
-                    <button class="btn btn-success mt-3">Valider la commande</button>
-                </form>
-
-                <h3 id="prixLivraison" class="mt-3 text-success" style="display:none;">
-                    Prix de livraison : <span id="prixValue"></span> XOF
-                </h3>
-
+                    <div class="card-footer bg-transparent border-top">
+                        <small class="text-muted d-flex align-items-start">
+                            <i class="bi bi-shield-check me-2 mt-1 text-success"></i>
+                            <span>Paiement sécurisé. Votre commande sera traitée rapidement.</span>
+                        </small>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</main>
+
+<style>
+    
+</style>
 
 <script>
     const typeRetraitSelect = document.getElementById("typeRetraitSelect");
@@ -127,5 +228,10 @@
         }
     });
 
-    toggleLivraison();
+    document.addEventListener('DOMContentLoaded', function () {
+        toggleLivraison();
+
+        const cards = document.querySelectorAll('.card');
+        
+    });
 </script>
