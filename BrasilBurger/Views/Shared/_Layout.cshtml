@@ -15,61 +15,75 @@
 
 <body>
     <header class="text-white back-red">
-        <div class="container-fluid px-5 py-3">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div class="d-flex align-items-center gap-2">
-                    <img src="~/img/burger.png" alt="Logo" class="logo">
-                    <span class="title">BrasilBurger</span>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark px-4">
+        <div class="container-fluid">
 
-                <div class="search d-flex align-items-center px-3">
-                    <i class="bi bi-search"></i>
-                    <span class="search-btn">Rechercher</span>
-                </div>
+            <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Catalog" asp-action="Index">
+                <img src="~/img/burger.png" alt="Logo" class="logo">
+                <span class="title">BrasilBurger</span>
+            </a>
 
-                <div class="d-flex align-items-center gap-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav mx-auto gap-lg-4 text-center">
+                    <li class="nav-item">
+                        <a asp-controller="Catalog" asp-action="Index" class="nav-link">
+                            Catalogue
+                        </a>
+                    </li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <div>
-                            <i class="bi bi-person-fill"></i> @User.Identity.Name
+                        <li class="nav-item">
+                            <a asp-controller="Commande" asp-action="UserCommandes"
+                               asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value"
+                               class="nav-link">
+                                Mes commandes
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 flex-column flex-lg-row text-center">
+
+                    <div class="search d-flex align-items-center px-3 py-2">
+                        <i class="bi bi-search me-2"></i>
+                        <span class="search-btn">Rechercher</span>
+                    </div>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-person-fill"></i>
+                            <span>@User.Identity.Name</span>
                             <a asp-controller="Auth" asp-action="Logout"
-                                class="text-decoration-none text-white btn btn-secondary">Déconnexion</a>
+                               class="btn btn-secondary btn-sm">
+                                Déconnexion
+                            </a>
                         </div>
                     }
                     else
                     {
                         <a asp-controller="Auth" asp-action="Login"
-                            class="text-decoration-none text-white btn btn-secondary">
-                            Se Connecter
+                           class="btn btn-secondary btn-sm">
+                            Se connecter
                         </a>
                     }
-
-
                 </div>
             </div>
-
-            <nav class="d-flex justify-content-center gap-5">
-                <a asp-controller="Catalog" asp-action="Index" class="nav">
-                    Catalogue
-                </a>
-
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <a asp-controller="Commande" asp-action="UserCommandes"
-                        asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value" class="nav">
-                        Mes commandes
-                    </a>
-                }
-
-            </nav>
-
         </div>
-        <div class="back-yellow px-5 py-3">
-            <h2 class="m-0">
-                @ViewData["PageTitle"]
-            </h2>
-        </div>
-    </header>
+    </nav>
+
+    <div class="back-yellow px-4 py-3 text-center text-lg-start">
+        <h2 class="m-0">@ViewData["PageTitle"]</h2>
+    </div>
+</header>
+
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
