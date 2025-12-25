@@ -1,0 +1,11 @@
+{% if nbrePages > 0 %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item {{ pageEnCours <= 1 ? 'disabled' }}"><a class="page-link" href={{ path(pathName, app.request.query.all|merge({page:pageEnCours-1})) }}>Previous</a></li>
+            {% for index in 1..nbrePages %}
+                <li class="page-item {{ pageEnCours==index ? 'active' }}"><a class="page-link" href={{ path(pathName, app.request.query.all|merge({page:index})) }}>{{ index }}</a></li>
+            {% endfor %}
+            <li class="page-item {{ pageEnCours >= nbrePages ? 'disabled' }}"><a class="page-link" href={{ path(pathName, app.request.query.all|merge({page:pageEnCours+1})) }}>Next</a></li>
+        </ul>
+    </nav>
+{% endif %}
