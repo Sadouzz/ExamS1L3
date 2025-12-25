@@ -19,7 +19,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
 
 COPY . .
 
@@ -36,4 +38,4 @@ RUN php bin/console cache:clear \
 
 EXPOSE 10000
 
-CMD php -S 0.0.0.0:$PORT -t public
+CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
