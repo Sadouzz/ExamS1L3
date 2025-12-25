@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && rm composer-setup.php
@@ -37,7 +36,7 @@ RUN composer install \
     --no-scripts
 
 RUN php bin/console importmap:install \
-    && php bin/console asset-map:compile \
+    && php bin/console asset-map:compile
 
 EXPOSE 10000
 
