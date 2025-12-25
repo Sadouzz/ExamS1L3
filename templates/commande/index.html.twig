@@ -1,53 +1,118 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Liste des commandes{% endblock %}
-
 {% block body %}
-    <div>
-    <table class="table table-striped mb-0">
-        <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Quartier</th>
-            <th>Montant HT</th>
-            <th>Montant total</th>
-            <th>Statut</th>
-            <th>Type de retrait</th>
-            <th>Payée</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
+    <main class="main" id="main">
+        <div class="pagetitle">
+            <h3>Liste des commandes</h3>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Accueil</li>
+                    <li class="breadcrumb-item active" aria-current="page">Commandes</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="card mb-3 shadow border-0 rounded-0">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="mb-0">
+                        <i class="bi bi-funnel-fill text-info me-2"></i>
+                        Filtres et recherche
+                    </h6>
+                </div>
 
-        {% for commande in commandes %}
-            <tr>
-                <td>{{ commande.id }}</td>
-                <td>{{ commande.quartierName }}</td>
-                <td>{{ commande.montantHT|number_format(0, ',', ' ') }} FCFA</td>
-                <td class="fw-bold">
-                    {{ commande.montantTotal|number_format(0, ',', ' ') }} FCFA
-                </td>
-                <td>{{ commande.statut }}</td>
-                <td>{{ commande.typeRetrait }}</td>
-                <td>
-                    {% if commande.isPaid %}
-                        <span class="badge bg-success">Payée</span>
-                    {% else %}
-                        <span class="badge bg-danger">Non payée</span>
-                    {% endif %}
-                </td>
-                <td>{{ commande.createdAt|date('d/m/Y') }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8" class="text-center text-muted py-4">
-                    Aucune commande trouvée
-                </td>
-            </tr>
-        {% endfor %}
+                {{ form_start(formSearchCommande) }}
+                <div class="row g-3">
+                    <div class='col-lg-3 col-md-12'>
+                        {{ form_row(formSearchCommande.quartier) }}
+                    </div>
+                    <div class='col-lg-2 col-md-12'>
+                        {{ form_row(formSearchCommande.isPaid) }}
+                    </div>
+                    <div class='col-lg-3 col-md-12'>
+                        {{ form_row(formSearchCommande.typeRetrait) }}
+                    </div>
+                    <div class='col-lg-3 col-md-12'>
+                        {{ form_row(formSearchCommande.statut) }}
+                    </div>
+                    <div class='col-lg-1 col-md-12 align-content-end'>
+                        <button class="btn btn-primary">Filtrer</button>
+                    </div>
+                </div>
+                {{ form_end(formSearchCommande) }}
+            </div>
+        </div>
 
-        </tbody>
-    </table>
-    {% include "comps/pagination.html.twig" with {nbrePages:nbrePages, pageEnCours:pageEnCours, pathName:'app_commande'} %}
-</div>
+
+        <div class="card shadow border-0 rounded-0">
+            <div class="p-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title m-0">
+                        Liste des commandes
+                        <span class="badge bg-info ms-2">{{ count }}</span>
+                    </h5>
+                    <div class="text-muted small">
+                        Page {{ pageEnCours }} sur {{ nbrePages }}
+
+                        {% if count > 0 %}
+                            {% set indexOfFirstItem = (pageEnCours - 1) * limit + 1 %}
+                            {% set indexOfLastItem = indexOfFirstItem + commandes|length - 1 %}
+
+                            <span>
+                                • Affichage de {{ indexOfFirstItem }} à {{ indexOfLastItem }} sur {{ count }}
+                            </span>
+                        {% endif %}
+                    </div>
+
+
+                </div>
+            </div>
+            <table class="table table-striped mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Quartier</th>
+                    <th>Montant HT</th>
+                    <th>Montant total</th>
+                    <th>Statut</th>
+                    <th>Type de retrait</th>
+                    <th>Payée</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for commande in commandes %}
+                    <tr>
+                        <td>{{ commande.id }}</td>
+                        <td>{{ commande.quartierName }}</td>
+                        <td>{{ commande.montantHT|number_format(0, ',', ' ') }} FCFA</td>
+                        <td class="fw-bold">
+                            {{ commande.montantTotal|number_format(0, ',', ' ') }} FCFA
+                        </td>
+                        <td>{{ commande.statut }}</td>
+                        <td>{{ commande.typeRetrait }}</td>
+                        <td>
+                            {% if commande.isPaid %}
+                                <span class="badge bg-success">Payée</span>
+                            {% else %}
+                                <span class="badge bg-danger">Non payée</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ commande.createdAt|date('d/m/Y') }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center text-muted py-4">
+                            Aucune commande trouvée
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        {% include "comps/pagination.html.twig" with {nbrePages:nbrePages, pageEnCours:pageEnCours, pathName:'app_commande'} %}
+
+    </main>
 {% endblock %}
