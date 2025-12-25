@@ -31,10 +31,8 @@ ENV APP_DEBUG=0
 RUN composer install \
     --no-dev \
     --optimize-autoloader \
-    --no-interaction
-
-RUN php bin/console cache:clear \
-    && php bin/console cache:warmup
+    --no-interaction \
+    --no-scripts
 
 EXPOSE 10000
 
