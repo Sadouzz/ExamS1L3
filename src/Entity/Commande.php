@@ -40,19 +40,19 @@ class Commande
     #[ORM\Column]
     private ?bool $isPaid = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?StatutCommande $statut = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?TypeRetrait $typeRetrait = null;
 
     /**
      * @var Collection<int, CommandeItem>
      */
     #[ORM\OneToMany(targetEntity: CommandeItem::class, mappedBy: 'commande')]
     private Collection $commandeItems;
+
+    #[ORM\Column(enumType: StatutCommande::class)]
+    private ?StatutCommande $statut = null;
+
+    #[ORM\Column(enumType: TypeRetrait::class)]
+    private ?TypeRetrait $typeRetrait = null;
 
     public function __construct()
     {
@@ -155,30 +155,6 @@ class Commande
         return $this;
     }
 
-    public function getStatut(): ?StatutCommande
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(?StatutCommande $statut): static
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    public function getTypeRetrait(): ?TypeRetrait
-    {
-        return $this->typeRetrait;
-    }
-
-    public function setTypeRetrait(?TypeRetrait $typeRetrait): static
-    {
-        $this->typeRetrait = $typeRetrait;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, CommandeItem>
      */
@@ -205,6 +181,30 @@ class Commande
                 $commandeItem->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatut(): ?StatutCommande
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(StatutCommande $statut): static
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getTypeRetrait(): ?TypeRetrait
+    {
+        return $this->typeRetrait;
+    }
+
+    public function setTypeRetrait(TypeRetrait $typeRetrait): static
+    {
+        $this->typeRetrait = $typeRetrait;
 
         return $this;
     }

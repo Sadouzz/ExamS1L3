@@ -24,9 +24,10 @@ class LivraisonAffectation
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?StatutLivraison $statut = null;
+    #[ORM\Column(enumType: StatutLivraison::class)]
+    private ?StatutLivraison $statutLivraison = null;
+
+
 
     public function getId(): ?int
     {
@@ -64,14 +65,14 @@ class LivraisonAffectation
         return $this;
     }
 
-    public function getStatut(): ?StatutLivraison
+    public function getStatutLivraison(): ?StatutLivraison
     {
-        return $this->statut;
+        return $this->statutLivraison;
     }
 
-    public function setStatut(?StatutLivraison $statut): static
+    public function setStatutLivraison(StatutLivraison $statutLivraison): static
     {
-        $this->statut = $statut;
+        $this->statutLivraison = $statutLivraison;
 
         return $this;
     }

@@ -25,12 +25,13 @@ class Paiement
     #[ORM\Column]
     private ?\DateTimeImmutable $date = null;
 
-    #[ORM\ManyToOne]
-    private ?MoyenPaiement $moyenPaiement = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
+
+    #[ORM\Column(enumType: MoyenPaiement::class)]
+    private ?MoyenPaiement $moyenPaiement = null;
 
     public function getId(): ?int
     {
@@ -80,17 +81,7 @@ class Paiement
         return $this;
     }
 
-    public function getMoyenPaiement(): ?MoyenPaiement
-    {
-        return $this->moyenPaiement;
-    }
 
-    public function setMoyenPaiement(?MoyenPaiement $moyenPaiement): static
-    {
-        $this->moyenPaiement = $moyenPaiement;
-
-        return $this;
-    }
 
     public function getCommande(): ?Commande
     {
@@ -100,6 +91,18 @@ class Paiement
     public function setCommande(Commande $commande): static
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getMoyenPaiement(): ?MoyenPaiement
+    {
+        return $this->moyenPaiement;
+    }
+
+    public function setMoyenPaiement(MoyenPaiement $moyenPaiement): static
+    {
+        $this->moyenPaiement = $moyenPaiement;
 
         return $this;
     }

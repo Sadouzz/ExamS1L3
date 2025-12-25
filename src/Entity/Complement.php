@@ -30,15 +30,14 @@ class Complement
     #[ORM\Column]
     private ?bool $isArchived = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?TypeComplement $typeComplement = null;
-
     /**
      * @var Collection<int, MenuComplement>
      */
     #[ORM\OneToMany(targetEntity: MenuComplement::class, mappedBy: 'complement')]
     private Collection $menuComplements;
+
+    #[ORM\Column(enumType: TypeComplement::class)]
+    private ?TypeComplement $typeComplement = null;
 
     public function __construct()
     {
@@ -105,18 +104,6 @@ class Complement
         return $this;
     }
 
-    public function getTypeComplement(): ?TypeComplement
-    {
-        return $this->typeComplement;
-    }
-
-    public function setTypeComplement(?TypeComplement $typeComplement): static
-    {
-        $this->typeComplement = $typeComplement;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, MenuComplement>
      */
@@ -143,6 +130,18 @@ class Complement
                 $menuComplement->setComplement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypeComplement(): ?TypeComplement
+    {
+        return $this->typeComplement;
+    }
+
+    public function setTypeComplement(TypeComplement $typeComplement): static
+    {
+        $this->typeComplement = $typeComplement;
 
         return $this;
     }
