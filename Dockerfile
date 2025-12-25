@@ -10,14 +10,16 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    default-mysql-client \
+    libpq-dev \
     && docker-php-ext-install \
         intl \
         pdo \
         pdo_mysql \
+        pdo_pgsql \
         zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
