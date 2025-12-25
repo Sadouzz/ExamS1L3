@@ -36,6 +36,9 @@ RUN composer install \
     --no-interaction \
     --no-scripts
 
+RUN php bin/console importmap:install \
+    && php bin/console asset-map:compile \
+
 EXPOSE 10000
 
 CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
