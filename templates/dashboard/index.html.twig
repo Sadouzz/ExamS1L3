@@ -3,42 +3,95 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
-    Commandes en cours Aujourd'hui: {{ commandesEnCours }}
-    Commandes annulées Aujourd'hui: {{ commandesAnnulees }}
-    Recettes Aujourd'hui: {{ recettes }}
-    Commandes validées Aujourd'hui: {{ commandesPayees }}
+    <main id="main" class="main ">
+        <div class="pagetitle">
+            <h3>Tableau de bord</h3>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Accueil</li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
 
-    <canvas id="burgersCharts"></canvas>
-    <canvas id="menusCharts"></canvas>
-</div>
+        <div class="row mt-4">
+            {% set cards = [
+                { title:'Commandes en cours', value: commandesEnCours, icon:'bi-cart', color:'warning' },
+                { title:'Commandes validées', value: commandesPayees, icon:'bi-cart-check', color:'success' },
+                { title:'Commandes Annulées', value: commandesAnnulees, icon:'bi-bag', color:'danger' },
+                { title:'Recettes', value:'XOF ' ~ recettes, icon:'bi-cash', color:'primary' },
+            ] %}
 
-    <script>
-        const burgersCtx = document.getElementById('burgersCharts');
-        new Chart(burgersCtx, {
-            type: 'bar',
-            data: {
-                labels: {{ burgersLabels|json_encode|raw }},
-                datasets: [{
-                    label: "Burgers les plus vendus | Aujourd'hui",
-                    data: {{ burgersValues|json_encode|raw }}
-                }]
-            },
-            options: { indexAxis: 'y' }
-        });
+            {% for card in cards %}
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="card shadow border-0 rounded-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ card.title }}</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-{{ card.color }} bg-opacity-10 card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people text-{{ card.color }}" style="font-size: 2rem;" ></i>
+                                </div>
+                                <div class="p-3">
+                                    <h2 class="mb-0">{{ card.value }}</h2>
+                                    <small class="text-success">
+                                        <i class="bi bi-arrow-up"></i> Inscrits
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
 
-        const menusCtx = document.getElementById('menusCharts');
-        new Chart(menusCtx, {
-            type: 'bar',
-            data: {
-                labels: {{ menusLabels|json_encode|raw }},
-                datasets: [{
-                    label: "Menus les plus vendus | Aujourd'hui",
-                    data: {{ menusValues|json_encode|raw }}
-                }]
-            },
-            options: { indexAxis: 'y' }
-        });
-    </script>
+        <div class="row mt-3">
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <canvas id="burgersCharts"></canvas>
+                </div>
+            </div>
 
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <canvas id="menusCharts"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            (function () {
+                const burgersCanvas = document.getElementById('burgersCharts');
+                if (burgersCanvas) {
+                    new Chart(burgersCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: {{ burgersLabels|json_encode|raw }},
+                            datasets: [{
+                                label: "Burgers les plus vendus | Aujourd'hui",
+                                data: {{ burgersValues|json_encode|raw }}
+                            }]
+                        },
+                        options: { indexAxis: 'y' }
+                    });
+                }
+
+                const menusCanvas = document.getElementById('menusCharts');
+                if (menusCanvas) {
+                    new Chart(menusCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: {{ menusLabels|json_encode|raw }},
+                            datasets: [{
+                                label: "Menus les plus vendus | Aujourd'hui",
+                                data: {{ menusValues|json_encode|raw }}
+                            }]
+                        },
+                        options: { indexAxis: 'y' }
+                    });
+                }
+            })();
+        </script>
+
+    </main>
 {% endblock %}
