@@ -10,7 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ComplementRepository::class)]
-#[ORM\Table(name: 'complement')]
+#[ORM\Table(name: 'complements')]
 class Complement
 {
     #[ORM\Id]

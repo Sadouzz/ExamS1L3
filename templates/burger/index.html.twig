@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="main" id="main">
+        <div class="pagetitle">
+            <h3>Liste des burgers</h3>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Accueil</li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
+        <form method="get" class="mb-3">
+            <div class="row g-3">
+                <div class='col-12'>
+                    <label class="form-label small text-muted">Rechercher un burger</label>
+                    <div class="input-group">
+                                            <span class="input-group-text rounded-0">
+                                                <i class="bi bi-building"></i>
+                                            </span>
+                        <input type="text"
+                               name="search"
+                               value=""
+                               class="form-control"
+                               placeholder="Rechercher par quartier">
+                        <button class="btn btn-outline-primary">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="card shadow border-0 rounded-0">
+            <div class="p-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title m-0">
+                        Liste des burgers
+                        <span class="badge bg-info ms-2">26</span>
+                    </h5>
+                </div>
+            </div>
+            <table class="table table-striped mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Categorie</th>
+                    <th>Description</th>
+                    <th>Statut</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for burger in burgers %}
+                    <tr>
+                        <td>{{ burger.id }}</td>
+                        <td>
+                            <img src="{{ burger.imageUrl }}" alt="{{ burger.libelle }}" style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td>{{ burger.libelle }}</td>
+                        <td>{{ burger.prix|number_format(0, ',', ' ') }} FCFA</td>
+                        <td>{{ burger.burgerCategorie.nom }}</td>
+                        <td>{{ burger.description }}</td>
+                        <td>
+                            {% if burger.isArchived %}
+                                <span class="badge bg-danger">Archivé</span>
+                            {% else %}
+                                <span class="badge bg-success">Non Archivé</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            Aucun burger trouvé
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}

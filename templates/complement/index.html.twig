@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="main" id="main">
+        <div class="pagetitle">
+            <h3>Liste des compléments</h3>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Accueil</li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
+        <form method="get" class="mb-3">
+            <div class="row g-3">
+                <div class='col-12'>
+                    <label class="form-label small text-muted">Rechercher un complément</label>
+                    <div class="input-group">
+                                            <span class="input-group-text rounded-0">
+                                                <i class="bi bi-building"></i>
+                                            </span>
+                        <input type="text"
+                               name="search"
+                               value=""
+                               class="form-control"
+                               placeholder="Rechercher par quartier">
+                        <button class="btn btn-outline-primary">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="card shadow border-0 rounded-0">
+            <div class="p-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title m-0">
+                        Liste des compléments
+                        <span class="badge bg-info ms-2">26</span>
+                    </h5>
+                </div>
+            </div>
+            <table class="table table-striped mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Categorie</th>
+                    <th>Statut</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for complement in complements %}
+                    <tr>
+                        <td>{{ complement.id }}</td>
+                        <td>
+                            <img src="{{ complement.imageUrl }}" alt="{{ complement.libelle }}" style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td>{{ complement.libelle }}</td>
+                        <td>{{ complement.prix|number_format(0, ',', ' ') }} FCFA</td>
+                        <td>{{ complement.typeComplement.value }}</td>
+                        <td>
+                            {% if complement.isArchived %}
+                                <span class="badge bg-danger">Archivé</span>
+                            {% else %}
+                                <span class="badge bg-success">Non Archivé</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            Aucun complément trouvé
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+{% endblock %}
