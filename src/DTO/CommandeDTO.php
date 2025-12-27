@@ -24,7 +24,7 @@ class CommandeDTO
         $dto->montantTotal = $entity->getMontantTotal();
         $dto->statut = $entity->getStatut()->name;
         $dto->typeRetrait = $entity->getTypeRetrait()->name;
-        $dto->quartierName = $entity->getQuartier()->getId();
+        $dto->quartierName = $entity->getQuartier()->getNom();
         $dto->isPaid = $entity->isPaid();
         $dto->createdAt = $entity->getCreatedAt();
         return $dto;
