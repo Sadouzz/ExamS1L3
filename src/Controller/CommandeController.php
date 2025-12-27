@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\DTO\CommandeDTO;
 use App\DTO\CommandeSearchFormDto;
+use App\Entity\Commande;
+use App\Entity\Enum\StatutCommande;
 use App\Form\CommandeSearchType;
 use App\Repository\CommandeRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,6 +81,36 @@ final class CommandeController extends AbstractController
             'limit' => $limit,
             'filtered' => $filtered,
             'formSearchCommande' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/commande/{id}/terminer', name: 'app_commande_terminer', methods: ['POST'])]
+    public function terminer(Commande $commande, EntityManagerInterface $em, Request $request): RedirectResponse {
+        if (!$this->isCsrfTokenValid('terminer_commande_' . $commande->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException();
+        }
+        $commande->setStatut(StatutCommande::TERMINEE);
+        $em->flush();
+        $this->addFlash('success', 'Commande terminée avec succès.');
+
+        return $this->redirectToRoute('app_commande', [
+            'page' => $request->query->get('page', 1),
+            'search' => $request->query->get('search', ''),
+        ]);
+    }
+
+    #[Route('/commande/{id}/annuler', name: 'app_commande_annuler', methods: ['POST'])]
+    public function annuler(Commande $commande, EntityManagerInterface $em, Request $request): RedirectResponse {
+        if (!$this->isCsrfTokenValid('annuler_commande_' . $commande->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException();
+        }
+        $commande->setStatut(StatutCommande::ANNULEE);
+        $em->flush();
+        $this->addFlash('success', 'Commande annulée avec succès.');
+
+        return $this->redirectToRoute('app_commande', [
+            'page' => $request->query->get('page', 1),
+            'search' => $request->query->get('search', ''),
         ]);
     }
 }
