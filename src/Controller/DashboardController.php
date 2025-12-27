@@ -23,7 +23,7 @@ final class DashboardController extends AbstractController
         $commandesToday = $this->commandeRepository->findByDate($start, $end);
         $commandesEnCours = 0;
         $commandesAnnulees = 0;
-
+        $commandesPayees = [];
 
         foreach ($commandesToday as $commande) {
             if ($commande->getStatut() === StatutCommande::EN_ATTENTE || $commande->getStatut() === StatutCommande::VALIDEE) {
@@ -32,11 +32,22 @@ final class DashboardController extends AbstractController
             if ($commande->getStatut() === StatutCommande::ANNULEE) {
                 $commandesAnnulees++;
             }
+
+            if ($commande->isPaid())
+            {
+                $commandesPayees[] = $commande;
+            }
+        }
+
+        $recettes = 0;
+        foreach ($commandesPayees as $com) {
+            $recettes += $com->getMontantHorsLivraison();
         }
 
         return $this->render('dashboard/index.html.twig', [
             'commandesEnCours' => $commandesEnCours,
             'commandesAnnulees' => $commandesAnnulees,
+            'recettes' => $recettes,
         ]);
     }
 }
