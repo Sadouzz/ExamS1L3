@@ -45,14 +45,28 @@ final class BurgerController extends AbstractController
             $filtered = false;
         }
 
+        $page = $request->query->getInt('page', 1);
+        $limit = $this->getParameter('LIMIT_PER_PAGE');
+        $offset = ($page - 1) * $limit;
+
+        $count = $this->burgerRepository->count($filtre);
+        $nbrePages = ceil($count / $limit);
+
         $burgers = $this->burgerRepository->findBy(
             $filtre,
-            ['id' => 'asc']
+            ['id' => 'asc'],
+            $limit,
+            $offset
         );
 
         $burgersDto = BurgerDto::fromEntities($burgers);
         return $this->render('burger/index.html.twig', [
             'burgers' => $burgersDto,
+            'count' => $count,
+            'pageEnCours' => $page,
+            'nbrePages' => $nbrePages,
+            'limit' => $limit,
+            'filtered' => $filtered,
             'formSearchBurger' => $form->createView(),
         ]);
     }

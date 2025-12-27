@@ -45,14 +45,28 @@ final class ComplementController extends AbstractController
             $filtered = false;
         }
 
+        $page = $request->query->getInt('page', 1);
+        $limit = $this->getParameter('LIMIT_PER_PAGE');
+        $offset = ($page - 1) * $limit;
+
+        $count = $this->complementRepository->count($filtre);
+        $nbrePages = ceil($count / $limit);
+
         $complements = $this->complementRepository->findBy(
             $filtre,
-            ['id' => 'asc']
+            ['id' => 'asc'],
+            $limit,
+            $offset
         );
 
         $complementsDto = ComplementDto::fromEntities($complements);
         return $this->render('complement/index.html.twig', [
             'complements' => $complementsDto,
+            'count' => $count,
+            'pageEnCours' => $page,
+            'nbrePages' => $nbrePages,
+            'limit' => $limit,
+            'filtered' => $filtered,
             'formSearchComplement' => $form->createView(),
         ]);
     }
