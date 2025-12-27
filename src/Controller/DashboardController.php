@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class DashboardController extends AbstractController
 {
-    public function __construct(private readonly CommandeRepository $commandeRepository)
+    public function __construct(private readonly CommandeRepository $commandeRepository, private readonly CommandeItemRepository $commandeItemRepository)
     {
     }
 
@@ -48,6 +48,8 @@ final class DashboardController extends AbstractController
             'commandesEnCours' => $commandesEnCours,
             'commandesAnnulees' => $commandesAnnulees,
             'recettes' => $recettes,
+            'commandesPayees' => count($commandesPayees),
         ]);
     }
+
 }
