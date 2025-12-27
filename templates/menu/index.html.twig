@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des menus{% endblock %}
+
+{% block body %}
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h3>Liste des menus</h3>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Accueil</li>
+                <li class="breadcrumb-item active" aria-current="page">Menus</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card mb-3 shadow border-0 rounded-0">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="mb-0">
+                    <i class="bi bi-funnel-fill text-secondary me-2"></i>
+                    Filtres et recherche
+                </h6>
+            </div>
+
+            {{ form_start(formSearchMenu) }}
+            <div class="row g-3">
+                <div class='col-lg-2 col-md-12'>
+                    {{ form_row(formSearchMenu.isArchived) }}
+                </div>
+                <div class='col-lg-1 col-md-12 align-content-end'>
+                    <button class="btn btn-secondary">Filtrer</button>
+                </div>
+            </div>
+            {{ form_end(formSearchMenu) }}
+        </div>
+    </div>
+
+
+    <div class="card shadow border-0 rounded-0">
+        <div class="p-3 border-bottom">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title m-0">
+                    Liste des menus
+                    <span class="badge bg-secondary ms-2">{{ count }}</span>
+                </h5>
+                <div class="text-muted small">
+                    Page {{ pageEnCours }} sur {{ nbrePages }}
+
+                    {% if count > 0 %}
+                        {% set indexOfFirstItem = (pageEnCours - 1) * limit + 1 %}
+                        {% set indexOfLastItem = indexOfFirstItem + menus|length - 1 %}
+
+                        <span>
+                                • Affichage de {{ indexOfFirstItem }} à {{ indexOfLastItem }} sur {{ count }}
+                            </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped mb-0">
+        <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Libellé</th>
+            <th>Image</th>
+            <th>Prix</th>
+            <th>Burgers</th>
+            <th>Compléments</th>
+            <th>Archivé</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for menu in menus %}
+            <tr>
+                <td>{{ menu.id }}</td>
+                <td>{{ menu.libelle }}</td>
+                <td>
+                    {% if menu.imageUrl %}
+                        <img src="{{ menu.imageUrl }}" alt="{{ menu.libelle }}" width="80">
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ menu.prix|number_format(0, ',', ' ') }} FCFA</td>
+
+                <td>
+                    {% if menu.burgers|length > 0 %}
+                        <ul class="mb-0">
+                            {% for mb in menu.burgers %}
+                                <li>{{ mb.burger.libelle }} x{{ mb.quantite }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if menu.complements|length > 0 %}
+                        <ul class="mb-0">
+                            {% for mc in menu.complements %}
+                                <li>{{ mc.complement.libelle }} x{{ mc.quantite }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if menu.isArchived %}
+                        <span class="badge bg-secondary">Archivé</span>
+                    {% else %}
+                        <span class="badge bg-success">Non Archivé</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center text-muted py-4">
+                    Aucun menu trouvé
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+        </div>
+        {% include "comps/pagination.html.twig" with {nbrePages:nbrePages, pageEnCours:pageEnCours, pathName:'app_menu'} %}
+    </main>
+{% endblock %}

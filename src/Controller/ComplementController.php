@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\DTO\ComplementDTO;
-use App\DTO\ComplementSearchDTO;
+use App\DTO\MenuSearchDTO;
 use App\Form\ComplementSearchType;
 use App\Repository\ComplementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +22,7 @@ final class ComplementController extends AbstractController
     {
         $filtre = [];
 
-        $searchFormDto = new ComplementSearchDTO();
+        $searchFormDto = new MenuSearchDTO();
         $form = $this->createForm(ComplementSearchType::class, $searchFormDto, [
             'method' => 'GET',
             'csrf_protection' => false,
