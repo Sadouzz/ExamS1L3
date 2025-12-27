@@ -62,15 +62,26 @@ final class CommandeController extends AbstractController
         $limit = $this->getParameter('LIMIT_PER_PAGE');
         $offset = ($page - 1) * $limit;
 
-        $count = $this->commandeRepository->count($filtre);
-        $nbrePages = ceil($count / $limit);
+        //$count = $this->commandeRepository->count($filtre);
 
-        $commandes = $this->commandeRepository->findBy(
+        $typeProduit = $searchFormDto->typeProduit ?? null;
+
+        $commandes = $this->commandeRepository->findBySearch(
+            $filtre,
+            $typeProduit,
+            $limit,
+            $offset
+        );
+
+        $count = count($commandes);
+
+        $nbrePages = ceil($count / $limit);
+        /*$commandes = $this->commandeRepository->findBy(
             $filtre,
             ['id' => 'asc'],
             $limit,
             $offset
-        );
+        );*/
 
         $commandesDto = CommandeDto::fromEntities($commandes);
         return $this->render('commande/index.html.twig', [

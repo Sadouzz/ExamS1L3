@@ -54,7 +54,18 @@ class CommandeSearchType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
-            ]);
+            ])
+            ->add('typeProduit', ChoiceType::class, [
+                'required' => false,
+                'placeholder' => 'Burger ou Menu',
+                'choices' => [
+                    'Burger' => 'burger',
+                    'Menu' => 'menu',
+                ],
+                'attr' => ['class' => 'form-select'],
+            ])
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

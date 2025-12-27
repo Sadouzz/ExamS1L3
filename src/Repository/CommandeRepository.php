@@ -28,6 +28,39 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findBySearch(
+        array $filters,
+        ?string $typeProduit,
+        int $limit,
+        int $offset
+    ): array {
+        $qb = $this->createQueryBuilder('c')
+            ->leftJoin('c.commandeItems', 'ci')
+            ->addSelect('ci');
+
+        foreach ($filters as $field => $value) {
+            $qb->andWhere("c.$field = :$field")
+                ->setParameter($field, $value);
+        }
+
+        if ($typeProduit === 'burger') {
+            $qb->andWhere('ci.burger IS NOT NULL');
+        }
+
+        if ($typeProduit === 'menu') {
+            $qb->andWhere('ci.menu IS NOT NULL');
+        }
+
+        return $qb
+            ->distinct()
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 //    /**
 //     * @return Commande[] Returns an array of Commande objects
 //     */

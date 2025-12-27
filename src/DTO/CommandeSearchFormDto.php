@@ -12,5 +12,6 @@ class CommandeSearchFormDto
     public ?bool $isPaid = null;
     public ?StatutCommande $statut = null;
     public ?TypeRetrait $typeRetrait = null;
+    public ?string $typeProduit = null;
 }
 
