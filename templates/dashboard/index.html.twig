@@ -8,5 +8,37 @@
     Commandes annulées Aujourd'hui: {{ commandesAnnulees }}
     Recettes Aujourd'hui: {{ recettes }}
     Commandes validées Aujourd'hui: {{ commandesPayees }}
+
+    <canvas id="burgersCharts"></canvas>
+    <canvas id="menusCharts"></canvas>
 </div>
+
+    <script>
+        const burgersCtx = document.getElementById('burgersCharts');
+        new Chart(burgersCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ burgersLabels|json_encode|raw }},
+                datasets: [{
+                    label: "Burgers les plus vendus | Aujourd'hui",
+                    data: {{ burgersValues|json_encode|raw }}
+                }]
+            },
+            options: { indexAxis: 'y' }
+        });
+
+        const menusCtx = document.getElementById('menusCharts');
+        new Chart(menusCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ menusLabels|json_encode|raw }},
+                datasets: [{
+                    label: "Menus les plus vendus | Aujourd'hui",
+                    data: {{ menusValues|json_encode|raw }}
+                }]
+            },
+            options: { indexAxis: 'y' }
+        });
+    </script>
+
 {% endblock %}
