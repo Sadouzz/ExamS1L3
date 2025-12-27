@@ -22,15 +22,21 @@ final class DashboardController extends AbstractController
         $end   = new \DateTimeImmutable('tomorrow');
         $commandesToday = $this->commandeRepository->findByDate($start, $end);
         $commandesEnCours = 0;
+        $commandesAnnulees = 0;
+
 
         foreach ($commandesToday as $commande) {
             if ($commande->getStatut() === StatutCommande::EN_ATTENTE || $commande->getStatut() === StatutCommande::VALIDEE) {
                 $commandesEnCours++;
             }
+            if ($commande->getStatut() === StatutCommande::ANNULEE) {
+                $commandesAnnulees++;
+            }
         }
 
         return $this->render('dashboard/index.html.twig', [
             'commandesEnCours' => $commandesEnCours,
+            'commandesAnnulees' => $commandesAnnulees,
         ]);
     }
 }
