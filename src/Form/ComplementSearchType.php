@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\DTO\ComplementSearchDTO;
 use App\DTO\MenuSearchDTO;
 use App\Entity\Enum\TypeComplement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -41,7 +42,7 @@ class ComplementSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => MenuSearchDTO::class,
+            'data_class' => ComplementSearchDTO::class,
             'method' => 'GET',
             'csrf_protection' => false,
         ]);

@@ -88,7 +88,10 @@
                     {% if menu.burgers|length > 0 %}
                         <ul class="mb-0">
                             {% for mb in menu.burgers %}
-                                <li>{{ mb.burger.libelle }} x{{ mb.quantite }}</li>
+                                <li>
+                                    <img src="{{ mb.burger.imageUrl }}" alt="{{ mb.burger.libelle }}" style="max-width: 50px; max-height: 50px">
+                                    {{ mb.burger.libelle }} x{{ mb.quantite }}
+                                </li>
                             {% endfor %}
                         </ul>
                     {% else %}
@@ -100,7 +103,10 @@
                     {% if menu.complements|length > 0 %}
                         <ul class="mb-0">
                             {% for mc in menu.complements %}
-                                <li>{{ mc.complement.libelle }} x{{ mc.quantite }}</li>
+                                <li>
+                                    <img src="{{ mc.complement.imageUrl }}" alt="{{ mc.complement.libelle }}" style="max-width: 50px; max-height: 50px">
+                                    {{ mc.complement.libelle }} x{{ mc.quantite }}
+                                </li>
                             {% endfor %}
                         </ul>
                     {% else %}
