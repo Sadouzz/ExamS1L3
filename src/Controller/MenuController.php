@@ -41,14 +41,29 @@ final class MenuController extends AbstractController
             $filtered = false;
         }
 
+        $page = $request->query->getInt('page', 1);
+        $limit = $this->getParameter('LIMIT_PER_PAGE');
+        $offset = ($page - 1) * $limit;
+
+        $count = $this->menuRepository->count($filtre);
+        $nbrePages = ceil($count / $limit);
+
         $menus = $this->menuRepository->findBy(
             $filtre,
-            ['id' => 'DESC']
+            ['id' => 'DESC'],
+            $limit,
+            $offset
         );
 
         $menusDTO = MenuDTO::fromEntities($menus);
         return $this->render('menu/index.html.twig', [
             'menus'=> $menusDTO,
+            'count' => $count,
+            'pageEnCours' => $page,
+            'nbrePages' => $nbrePages,
+            'limit' => $limit,
+            'filtered' => $filtered,
+            'formSearchMenu' => $form->createView(),
         ]);
     }
 }
