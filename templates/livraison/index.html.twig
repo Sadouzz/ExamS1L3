@@ -9,6 +9,7 @@
         <tr>
             <th>#</th>
             <th>Zone</th>
+            <th>Quartier</th>
             <th>Statut</th>
         </tr>
         </thead>
@@ -18,7 +19,8 @@
             <tr>
                 <td>{{ livraison.id }}</td>
                 <td>{{ livraison.zone }}</td>
-                <td>{{ livraison.statutLivraison }}</td>
+                <td>{{ livraison.quartier }}</td>
+                <td>{{ livraison.statut }}</td>
             </tr>
         {% else %}
             <tr>

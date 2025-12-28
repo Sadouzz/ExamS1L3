@@ -6,8 +6,12 @@ use App\DTO\CommandeDTO;
 use App\DTO\CommandeSearchFormDto;
 use App\Entity\Commande;
 use App\Entity\Enum\StatutCommande;
+use App\Entity\Enum\StatutLivraison;
+use App\Entity\Enum\TypeRetrait;
+use App\Entity\LivraisonAffectation;
 use App\Form\CommandeSearchType;
 use App\Repository\CommandeRepository;
+use App\Repository\LivraisonAffectationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +21,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CommandeController extends AbstractController
 {
-    public function __construct(private readonly CommandeRepository $commandeRepository)
+    public function __construct(private readonly CommandeRepository $commandeRepository, private readonly LivraisonAffectationRepository $livraisonAffectationRepository)
     {
     }
 
@@ -103,6 +107,11 @@ final class CommandeController extends AbstractController
             throw $this->createAccessDeniedException();
         }
         $commande->setStatut(StatutCommande::TERMINEE);
+        if ($commande->getTypeRetrait() == TypeRetrait::LIVRAISON)
+        {
+            $livraison = $this->creationLivraison($commande);
+            $em->persist($livraison);
+        }
         $em->flush();
         $this->addFlash('success', 'Commande terminée avec succès.');
 
@@ -110,6 +119,15 @@ final class CommandeController extends AbstractController
             'page' => $request->query->get('page', 1),
             'search' => $request->query->get('search', ''),
         ]);
+    }
+
+    private function creationLivraison($commande): LivraisonAffectation
+    {
+        $livraison = new LivraisonAffectation();
+        $livraison->setCommande($commande);
+        $livraison->setStatut(StatutLivraison::EN_ATTENTE);
+        $livraison->setZone($commande->getQuartier()->getZone());
+        return $livraison;
     }
 
     #[Route('/commande/{id}/annuler', name: 'app_commande_annuler', methods: ['POST'])]
