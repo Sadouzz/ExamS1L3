@@ -37,35 +37,55 @@
 
 
         <div class="card shadow border-0 rounded-0">
+            <div class="p-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title m-0">
+                        Liste des livraisons
+                        <span class="badge bg-secondary ms-2">{{ count }}</span>
+                    </h5>
+                    <div class="text-muted small">
+                        Page {{ pageEnCours }} sur {{ nbrePages }}
 
+                        {% if count > 0 %}
+                            {% set indexOfFirstItem = (pageEnCours - 1) * limit + 1 %}
+                            {% set indexOfLastItem = indexOfFirstItem + livraisons|length - 1 %}
+
+                            <span>
+                                • Affichage de {{ indexOfFirstItem }} à {{ indexOfLastItem }} sur {{ count }}
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
             <table class="table table-striped mb-0">
-        <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Zone</th>
-            <th>Quartier</th>
-            <th>Statut</th>
-        </tr>
-        </thead>
-        <tbody>
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Zone</th>
+                    <th>Quartier</th>
+                    <th>Statut</th>
+                </tr>
+                </thead>
+                <tbody>
 
-        {% for livraison in livraisons %}
-            <tr>
-                <td>{{ livraison.id }}</td>
-                <td>{{ livraison.zone }}</td>
-                <td>{{ livraison.quartier }}</td>
-                <td>{{ livraison.statut }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3" class="text-center text-muted py-4">
-                    Aucune livraison trouvée
-                </td>
-            </tr>
-        {% endfor %}
+                {% for livraison in livraisons %}
+                    <tr>
+                        <td>{{ livraison.id }}</td>
+                        <td>{{ livraison.zone }}</td>
+                        <td>{{ livraison.quartier }}</td>
+                        <td>{{ livraison.statut }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">
+                            Aucune livraison trouvée
+                        </td>
+                    </tr>
+                {% endfor %}
 
-        </tbody>
-    </table>
+                </tbody>
+            </table>
         </div>
+        {% include "comps/pagination.html.twig" with {nbrePages:nbrePages, pageEnCours:pageEnCours, pathName:'app_livraison'} %}
     </main>
 {% endblock %}
