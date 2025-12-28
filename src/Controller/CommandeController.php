@@ -65,10 +65,12 @@ final class CommandeController extends AbstractController
         //$count = $this->commandeRepository->count($filtre);
 
         $typeProduit = $searchFormDto->typeProduit ?? null;
+        $date = $searchFormDto->date ?? null;
 
         $commandes = $this->commandeRepository->findBySearch(
             $filtre,
             $typeProduit,
+            $date,
             $limit,
             $offset
         );

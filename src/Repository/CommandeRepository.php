@@ -28,12 +28,21 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findBySearch(
-        array $filters,
-        ?string $typeProduit,
-        int $limit,
-        int $offset
-    ): array {
+    public function findByDateArray(DateTimeImmutable $date): array
+    {
+        $start = $date->setTime(0, 0, 0, 0);
+        $end   = $date->setTime(23, 59, 59, 999999);
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt BETWEEN :start AND :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findBySearch(array $filters, ?string $typeProduit, ?DateTimeImmutable $date, int $limit, int $offset): array {
         $qb = $this->createQueryBuilder('c')
             ->leftJoin('c.commandeItems', 'ci')
             ->addSelect('ci');
@@ -41,6 +50,15 @@ class CommandeRepository extends ServiceEntityRepository
         foreach ($filters as $field => $value) {
             $qb->andWhere("c.$field = :$field")
                 ->setParameter($field, $value);
+        }
+
+        if ($date !== null) {
+            $start = $date->setTime(0, 0, 0, 0);
+            $end   = $date->setTime(23, 59, 59, 999999);
+
+            $qb->andWhere('c.createdAt BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
         }
 
         if ($typeProduit === 'burger') {

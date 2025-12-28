@@ -6,6 +6,7 @@ use App\DTO\CommandeSearchFormDto;
 use App\Entity\Enum\StatutCommande;
 use App\Entity\Enum\TypeRetrait;
 use App\Entity\Quartier;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -64,7 +65,16 @@ class CommandeSearchType extends AbstractType
                 ],
                 'attr' => ['class' => 'form-select'],
             ])
-
+            ->add('date', DateType::class, [
+                'required' => false,
+                'label' => 'Date',
+                'widget' => 'single_text',
+                'html5' => true,
+                'input' => 'datetime_immutable',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
         ;
     }
 
