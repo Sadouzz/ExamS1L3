@@ -92,6 +92,16 @@
                         <span>Menus</span>
                     </a>
                 </li>
+
+                <li class="nav-item mb-1">
+                    <a
+                        href="{{ path('app_livraison') }}"
+                        class="nav-link {{ app.request.attributes.get('_route') starts with 'app_livraison' ? '' : 'collapsed' }}"
+                    >
+                        <i class="bi bi-truck"></i>
+                        <span>Livraisons</span>
+                    </a>
+                </li>
             </ul>
         </aside>
 

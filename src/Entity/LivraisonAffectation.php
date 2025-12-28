@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LivraisonAffectationRepository::class)]
-#[ORM\Table(name: 'livraison_affectation')]
+#[ORM\Table(name: 'livraison_affection')]
 class LivraisonAffectation
 {
     #[ORM\Id]
@@ -25,7 +25,7 @@ class LivraisonAffectation
     private ?Zone $zone = null;
 
     #[ORM\Column(enumType: StatutLivraison::class)]
-    private ?StatutLivraison $statutLivraison = null;
+    private ?StatutLivraison $statut = null;
 
 
 
@@ -65,14 +65,14 @@ class LivraisonAffectation
         return $this;
     }
 
-    public function getStatutLivraison(): ?StatutLivraison
+    public function getStatut(): ?StatutLivraison
     {
-        return $this->statutLivraison;
+        return $this->statut;
     }
 
-    public function setStatutLivraison(StatutLivraison $statutLivraison): static
+    public function setStatut(StatutLivraison $statut): static
     {
-        $this->statutLivraison = $statutLivraison;
+        $this->statut = $statut;
 
         return $this;
     }
