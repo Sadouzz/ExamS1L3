@@ -76,6 +76,7 @@
                 <thead class="table-dark">
                 <tr>
                     <th>#</th>
+                    <th>Client</th>
                     <th>Quartier</th>
                     <th>Montant HT</th>
                     <th>Montant total</th>
@@ -91,6 +92,7 @@
                 {% for commande in commandes %}
                     <tr>
                         <td>{{ commande.id }}</td>
+                        <td>{{ commande.clientName }}</td>
                         <td>{{ commande.quartierName }}</td>
                         <td>{{ commande.montantHT|number_format(0, ',', ' ') }} FCFA</td>
                         <td class="fw-bold">
@@ -137,7 +139,7 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="9" class="text-center text-muted py-4">
+                        <td colspan="10" class="text-center text-muted py-4">
                             Aucune commande trouvée
                         </td>
                     </tr>

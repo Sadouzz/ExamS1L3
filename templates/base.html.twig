@@ -34,7 +34,7 @@
                     >
                         <i class="bi bi-person me-2 fs-5 text-warning"></i>
                         <div class="d-flex flex-column text-start">
-
+                            {{ app.user ? app.user.roles[0] : '' }}
                         </div>
                     </button>
                 </div>

@@ -54,6 +54,10 @@ class Commande
     #[ORM\Column(enumType: TypeRetrait::class)]
     private ?TypeRetrait $typeRetrait = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $client = null;
+
     public function __construct()
     {
         $this->commandeItems = new ArrayCollection();
@@ -205,6 +209,18 @@ class Commande
     public function setTypeRetrait(TypeRetrait $typeRetrait): static
     {
         $this->typeRetrait = $typeRetrait;
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->client;
+    }
+
+    public function setClient(?User $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }

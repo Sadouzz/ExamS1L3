@@ -8,6 +8,7 @@ use \DateTimeImmutable;
 class CommandeDTO
 {
     public int $id;
+    public string $clientName;
     public string $quartierName;
     public float $montantHT;
     public float $montantTotal;
@@ -20,6 +21,7 @@ class CommandeDTO
     {
         $dto = new CommandeDTO();
         $dto->id = $entity->getId();
+        $dto->clientName = $entity->getClient()->getNom() . " " . $entity->getClient()->getPrenom();
         $dto->montantHT = $entity->getMontantHorsLivraison();
         $dto->montantTotal = $entity->getMontantTotal();
         $dto->statut = $entity->getStatut()->name;
