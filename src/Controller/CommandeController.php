@@ -79,7 +79,11 @@ final class CommandeController extends AbstractController
             $offset
         );
 
-        $count = count($commandes);
+        $count = $this->commandeRepository->countBySearch(
+            $filtre,
+            $typeProduit,
+            $date
+        );
 
         $nbrePages = ceil($count / $limit);
         /*$commandes = $this->commandeRepository->findBy(

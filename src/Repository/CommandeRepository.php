@@ -42,6 +42,38 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function countBySearch(array $filters, ?string $typeProduit, ?DateTimeImmutable $date): int
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('COUNT(DISTINCT c.id)')
+            ->leftJoin('c.commandeItems', 'ci');
+
+        foreach ($filters as $field => $value) {
+            $qb->andWhere("c.$field = :$field")
+                ->setParameter($field, $value);
+        }
+
+        if ($date !== null) {
+            $start = $date->setTime(0, 0, 0);
+            $end   = $date->setTime(23, 59, 59);
+
+            $qb->andWhere('c.createdAt BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
+        }
+
+        if ($typeProduit === 'burger') {
+            $qb->andWhere('ci.burger IS NOT NULL');
+        }
+
+        if ($typeProduit === 'menu') {
+            $qb->andWhere('ci.menu IS NOT NULL');
+        }
+
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+
     public function findBySearch(array $filters, ?string $typeProduit, ?DateTimeImmutable $date, int $limit, int $offset): array {
         $qb = $this->createQueryBuilder('c')
             ->leftJoin('c.commandeItems', 'ci')
