@@ -29,13 +29,10 @@
                             <h5 class="card-title">{{ card.title }}</h5>
                             <div class="d-flex align-items-center">
                                 <div class="bg-{{ card.color }} bg-opacity-10 card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people text-{{ card.color }}" style="font-size: 2rem;" ></i>
+                                    <i class="bi {{ card.icon }} text-{{ card.color }}" style="font-size: 2rem;" ></i>
                                 </div>
                                 <div class="p-3">
                                     <h2 class="mb-0">{{ card.value }}</h2>
-                                    <small class="text-success">
-                                        <i class="bi bi-arrow-up"></i> Inscrits
-                                    </small>
                                 </div>
                             </div>
                         </div>
