@@ -25,18 +25,20 @@
                     ></i>
                 </div>
 
-                <div class="dropdown">
-                    <button
-                        class="btn bg-transparent border-0 d-flex align-items-center"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        <i class="bi bi-person me-2 fs-5 text-warning"></i>
-                        <div class="d-flex flex-column text-start">
-                            {{ app.user ? app.user.roles[0] : '' }}
-                        </div>
-                    </button>
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show text-warning" data-bs-toggle="dropdown" aria-expanded="true">
+                        <i class="fas fa-user-circle"></i> {{ app.user ? app.user.nom ~ " " ~ app.user.prenom : 'User' }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-end">
+                        <li><a class="dropdown-item" href="#"> {{ app.user ? app.user.roles[0] : '' }}</a></li>
+                        <li><a class="dropdown-item" href="#"> Paramètres</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            {% if app.user %}
+                                <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                            {% endif %}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </header>
