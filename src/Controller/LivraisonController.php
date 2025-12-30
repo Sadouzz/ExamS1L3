@@ -39,6 +39,10 @@ final class LivraisonController extends AbstractController
                 $filtre['statut'] = $searchFormDto->statut;
             }
 
+            if ($searchFormDto->zone !== null) {
+                $filtre['zone'] = $searchFormDto->zone;
+            }
+
             $filtered = true;
         }
         else {

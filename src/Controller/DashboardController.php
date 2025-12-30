@@ -16,7 +16,7 @@ final class DashboardController extends AbstractController
     {
     }
 
-    #[Route('/', name: 'app_dashboard')]
+    #[Route('/dashboard', name: 'app_dashboard')]
     public function index(): Response
     {
         $start = new DateTimeImmutable('today');

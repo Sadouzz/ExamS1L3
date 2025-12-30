@@ -5,6 +5,9 @@ namespace App\Form;
 use App\DTO\ComplementSearchDTO;
 use App\DTO\LivraisonSearchDTO;
 use App\Entity\Enum\StatutLivraison;
+use App\Entity\Quartier;
+use App\Entity\Zone;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +18,14 @@ class LivraisonSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('zone', EntityType::class, [
+                'class' => Zone::class,
+                'choice_label' => 'nom',
+                'required' => false,
+                'placeholder' => 'Tous les zones',
+                'label' => 'Zone',
+                'attr' => ['class' => 'form-select'],
+            ])
             ->add('statut', ChoiceType::class, [
                 'choices' => StatutLivraison::cases(),
                 'choice_label' => fn (StatutLivraison $choice) => ucfirst($choice->value),
